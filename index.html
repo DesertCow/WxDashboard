@@ -4,23 +4,83 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/css/style.css" />
   <link rel="stylesheet" href="./assets/css/reset.css" />
   <title>Document</title>
 </head>
 <body>
 
+  <div class="wrapper">
+
+    <header>
+      <box class="titleBox d-flex align-items-center justify-content-center">
+        <h1>Wx Dashboard</h1>
+      </box>
+
+    </header>
+
+      <!-- <div class="row">
+        <button class="start-button">Start</button>
+        <button class="highScore-button">High Score</button>
+      </div> -->
+    <div class="container">
+      <div class="row">
+        <searchbar class="col-2">
+          <textarea class="form-control searchBoxInput d-flex justify-content-center" rows="1" style="height:50%; "placeholder="Irvine"></textarea>
+          <button type="button" class="btn btn-primary  m-3">Search</button>
+        </searchbar>
+        <cityCard class="col-8 m-3">
+            <div class="jumbotron">
+              <h1 class="display-6">##CITY-NAME## , ##DATE(MM/DD/YY)</h1>
+              <p class="lead liveCityTemp">Temp: </p>
+              <p class="lead liveCityTemp">Wind: </p>
+              <p class="lead liveCityTemp">Humidity: </p>
+              <p class="lead liveCityTemp">UV Index</p>
+              <hr class="my-4">
+              <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+            </div>
+        </cityCard>
+      </div>
+      <div class="row">
+        <div class="col m-4">
+          <ul>
+            <li><hr class="my-4"></li>
+            <li><button type="button" class="btn btn-primary btn-lg btn-block m-3">City_1</button></li>
+            <li><button type="button" class="btn btn-primary btn-lg btn-block m-3">City_2</button></li>
+            <li><button type="button" class="btn btn-primary btn-lg btn-block m-3">City_3</button></li>
+            <li><button type="button" class="btn btn-primary btn-lg btn-block m-3">City_4</button></li>
+            <li><button type="button" class="btn btn-primary btn-lg btn-block m-3">City_5</button></li>
+            <li><button type="button" class="btn btn-primary btn-lg btn-block m-3">City_6</button></li>
+          </ul>
+        </div>
+        <div class="col">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Day_1</button>
+        </div>
+          <div class="col">
+          <button type="button" class="btn btn-primary btn-lg btn-block">Day_1</button>
+          </div>
+          <div class="col">
+          <button type="button" class="btn btn-primary btn-lg btn-block">Day_1</button>
+          </div>
+          <div class="col">
+          <button type="button" class="btn btn-primary btn-lg btn-block">Day_1</button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-primary btn-lg btn-block">Day_1</button>
+          </div>
+      </div>
+
+    </div>
 
 
-
-
-
+  </div>
 
   
 </body>
 
 <footer>
-  <ul>
+  <ul class="align-items-center p-3">
     <li>
       <h5>Made by 🌵 Desert-Cow 🐄</h5>
     </li>
@@ -32,7 +92,9 @@
 
 <!-- ========= Main Script Call ========= -->
 <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script> -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 <script src="./assets/js/script.js"></script>
 
 </html>

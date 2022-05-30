@@ -15,8 +15,22 @@
 
 body {
   font-family: 'Open Sans', sans-serif;
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 1;
+}
+
+.titleBox {
+  display: flex;
+  background: linear-gradient(to right, rgba(170, 206, 239, 15), rgb(0, 132, 255));
+  min-height: 80px;
+  /* flex */
+  align-items: center;
+  font-size: 30px;
+  padding: 20px;
+  /*padding-top: 20px;
+  padding-bottom: 20px; */
+  width: 100%;
+  
 }
 
 
@@ -25,6 +39,7 @@ body {
 
 /* ======================== Footer ======================== */
 footer {
+  min-height: 40px;
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
