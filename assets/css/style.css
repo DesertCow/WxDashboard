@@ -1,0 +1,35 @@
+:root {
+  --main-bg-color: brown;
+  --boxHeight: 110px;
+
+  --hourBoxColor: #D4A373;
+  --meetingBoxColor: #FAEDCD;
+
+  --saveBoxColor: #CCD5AE;
+  --saveBoxShade: #515B2F;
+
+}
+
+
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+
+
+
+
+
+/* ======================== Footer ======================== */
+footer {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  background: #13293d;
+  color: #fff;
+  border-bottom:30px #879274;
+  width: 100%;
+}
