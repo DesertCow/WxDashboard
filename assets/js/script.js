@@ -189,7 +189,7 @@ function refreshPageData() {
   // Add code to update Local storeage each time the page is updaed.
 
   liveCityDateEl.textContent = currentCityWeather.city + " " + currentCityWeather.date;
-  liveCityTempEl.textContent = "Temperature: " + currentCityWeather.temp;
+  liveCityTempEl.textContent = "Temperature: " + currentCityWeather.temp + " (F)";
   liveCityWindEl.textContent = "Wind: " + currentCityWeather.wind + " mph";
   liveCityHumidityEl.textContent = "Humidity: " + currentCityWeather.humidity + " %";
   liveCityUVEl.textContent = "UV Index: " + currentCityWeather.uvIndex;
@@ -224,7 +224,8 @@ function refreshPageData() {
 // ################# FUNCTION_1 #################
 // ################# FUNCTION_1 #################
 // ################# FUNCTION_1 #################
-// ################# FUNCTION_1 #################
+
+
 
 // ################# currentCityWeatherUpdate #################
 function currentCityWeatherUpdate(searchCity) {
@@ -242,12 +243,13 @@ function currentCityWeatherUpdate(searchCity) {
 
   // Function to call API to get weather for City based on LAT/LON || Return 
 
-  newCityWeather = cityWeatherFetch(outputLATLON);
+  // newCityWeather = cityWeatherFetch(outputLATLON);
+  cityWeatherFetch(outputLATLON);
 
   // Update Program Array with Data returned from function above
   //currentCityWeather = newCityWeather;
 
-  refreshPageData();
+  //refreshPageData();
 
 
 
@@ -275,6 +277,7 @@ function cityWeatherFetch(location) {
   var lat = location[0];
   var lon = location[1];
   var apiCall = "VOID";
+  //var resultArray = new Array(6);
 
   let cityWeather = {
     "city": "VOID",
@@ -290,15 +293,32 @@ function cityWeatherFetch(location) {
 
   apiCall = openWeatherAPICallGen(lat, lon, "current");
 
+  var apiResult = openWeatherFetch(apiCall);
+
+  setTimeout(() => {
+    console.log("[cityWeatherFetch] Temp: " + currentCityWeather.temp);
+    console.log("[cityWeatherFetch] Wind: " + currentCityWeather.wind);
+    console.log("[cityWeatherFetch] Humidity: " + currentCityWeather.humidity);
+    console.log("[cityWeatherFetch] UV Index: " + currentCityWeather.uvIndex);
+    // console.log("[cityWeatherFetch] Time: " + resultArray[4]);
+    // console.log("[cityWeatherFetch] UTC Offset: " + resultArray[5]);
+    refreshPageData();
+
+  }, 2000);
+
+
+
+
+
 }
 
 
-// ################# FUNCTION_1 #################
+// ################# openWeatherAPICallGen #################
 function openWeatherAPICallGen(lat, lon, exclude) {
 
   var superSecretAPIKey = "9c040bb6e1db52e48386cf880254ac09";
 
-  var finalAPIcall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=" + exclude + "&appid=" + superSecretAPIKey + "";
+  var finalAPIcall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=" + exclude + "&appid=" + superSecretAPIKey + "&units=imperial";
 
   console.log("[openWeatherAPICall] = " + finalAPIcall);
 
@@ -306,11 +326,67 @@ function openWeatherAPICallGen(lat, lon, exclude) {
 
 }
 
+// ################# openWeatherFetch #################
+function openWeatherFetch(apiURL) {
+
+
+  // var requestUrl = 'https://api.github.com/repos/Twitter/chill/issues';
+  var outputArray = new Array(6);
+  var outputResponse;
+
+  fetch(apiURL)
+    .then(function (response) {
+
+      //console.log('======= API Resonpose: ' + response.status + ' =======');
+
+      if (response.status === 200) {
+        console.log("Upload Valid: " + response.status);
+        outputResponse = true;
+      }
+      else {
+        console.log("ERROR: Upload invalid: " + response.status);
+        outputResponse = false;
+
+      }
+
+      return response.json();
+    })
+    .then(function (data) {
+
+      console.log(data);
+
+      console.log("[openWeatherFetch] Temp: " + data.hourly[0].temp);
+      console.log("[openWeatherFetch] Wind: " + data.hourly[0].wind_speed);
+      console.log("[openWeatherFetch] Humidity: " + data.hourly[0].humidity);
+      console.log("[openWeatherFetch] UV Index: " + data.hourly[0].uvi);
+      console.log("[openWeatherFetch] Time: " + data.hourly[0].dt);
+      console.log("[openWeatherFetch] UTC Offset: " + data.timezone_offset);
+
+      outputArray[0] = data.hourly[0].dt;
+      outputArray[1] = data.timezone_offset;
+      outputArray[2] = data.hourly[0].temp;
+      outputArray[3] = data.hourly[0].wind_speed;
+      outputArray[4] = data.hourly[0].humidity;
+      outputArray[5] = data.hourly[0].uvi;
+
+      currentCityWeather.temp = data.hourly[0].temp;
+      currentCityWeather.wind = data.hourly[0].wind_speed;
+      currentCityWeather.humidity = data.hourly[0].humidity;
+      currentCityWeather.uvIndex = data.hourly[0].uvi;
+
+
+      currentCityWeather.date = moment(data.hourly[0].dt, "X").format("MMM Do YYYY");
 
 
 
+      // console.log("[openWeatherFetchARRAY] Temp: " + outputArray[5]);
 
 
+
+    });
+
+  return outputResponse;
+}
 
 
 // ################# Init #################
