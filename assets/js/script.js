@@ -14,36 +14,42 @@ var liveCityTempEl = document.querySelector(".liveCityTemp");
 var liveCityWindEl = document.querySelector(".liveCityWind");
 var liveCityHumidityEl = document.querySelector(".liveCityHumidity");
 var liveCityUVEl = document.querySelector(".liveCityUVindex");
+var liveCityIconEl = document.querySelector(".liveCityIcon");
 
 // ################# Forecast Card Day 1 #################
 var forecastcard1CityDateEL = document.querySelector(".forecastcard1CityDate");
 var forecastcard1TempEL = document.querySelector(".day1ForeTemp");
 var forecastcard1WindEL = document.querySelector(".day1ForeWind");
 var forecastcard1HumidityEL = document.querySelector(".day1ForeHumidity");
+var forecastIcon1El = document.querySelector(".day1Icon");
 
 // ################# Forecast Card Day 2 #################
 var forecastcard2CityDateEL = document.querySelector(".forecastcard2CityDate");
 var forecastcard2TempEL = document.querySelector(".day2ForeTemp");
 var forecastcard2WindEL = document.querySelector(".day2ForeWind");
 var forecastcard2HumidityEL = document.querySelector(".day2ForeHumidity");
+var forecastIcon2El = document.querySelector(".day2Icon");
 
 // ################# Forecast Card Day 3 #################
 var forecastcard3CityDateEL = document.querySelector(".forecastcard3CityDate");
 var forecastcard3TempEL = document.querySelector(".day3ForeTemp");
 var forecastcard3WindEL = document.querySelector(".day3ForeWind");
 var forecastcard3HumidityEL = document.querySelector(".day3ForeHumidity");
+var forecastIcon3El = document.querySelector(".day3Icon");
 
 // ################# Forecast Card Day 4 #################
 var forecastcard4CityDateEL = document.querySelector(".forecastcard4CityDate");
 var forecastcard4TempEL = document.querySelector(".day4ForeTemp");
 var forecastcard4WindEL = document.querySelector(".day4ForeWind");
 var forecastcard4HumidityEL = document.querySelector(".day4ForeHumidity");
+var forecastIcon4El = document.querySelector(".day4Icon");
 
 // ################# Forecast Card Day 5 #################
 var forecastcard5CityDateEL = document.querySelector(".forecastcard5CityDate");
 var forecastcard5TempEL = document.querySelector(".day5ForeTemp");
 var forecastcard5WindEL = document.querySelector(".day5ForeWind");
 var forecastcard5HumidityEL = document.querySelector(".day5ForeHumidity");
+var forecastIcon5El = document.querySelector(".day5Icon");
 
 // ################# Search Text Box #################
 
@@ -196,31 +202,38 @@ function refreshPageData() {
   liveCityWindEl.textContent = "Wind: " + currentCityWeather.wind + " mph";
   liveCityHumidityEl.textContent = "Humidity: " + currentCityWeather.humidity + " %";
   liveCityUVEl.textContent = "UV Index: " + currentCityWeather.uvIndex;
+  liveCityIconEl.src = currentCityWeather.wxImgLink;
+  // Refresh ICON
 
   //forecastcard1CityDateEL.textContent = "Austin, TX  (6-2-2022)";
   forecastcard1TempEL.textContent = "Temperature: " + fiveDayForecast[0].temp;
   forecastcard1WindEL.textContent = "Wind: " + fiveDayForecast[0].wind + " mph";
   forecastcard1HumidityEL.textContent = "Humidity: " + fiveDayForecast[0].humidity + " %";
+  forecastIcon1El.src = fiveDayForecast[0].wxImgLink;
 
   // forecastcard2CityDateEL.textContent = "Austin, TX  (6-3-2022)";
   forecastcard2TempEL.textContent = "Temperature: " + fiveDayForecast[1].temp;
   forecastcard2WindEL.textContent = "Wind: " + fiveDayForecast[1].wind + " mph";
   forecastcard2HumidityEL.textContent = "Humidity: " + fiveDayForecast[1].humidity + " %";
+  forecastIcon2El.src = fiveDayForecast[1].wxImgLink;
 
   // forecastcard3CityDateEL.textContent = "Austin, TX  (6-4-2022)";
   forecastcard3TempEL.textContent = "Temperature: " + fiveDayForecast[2].temp;
   forecastcard3WindEL.textContent = "Wind: " + fiveDayForecast[2].wind + " mph";
   forecastcard3HumidityEL.textContent = "Humidity: " + fiveDayForecast[2].humidity + " %";
+  forecastIcon3El.src = fiveDayForecast[2].wxImgLink;
 
   // forecastcard4CityDateEL.textContent = "Austin, TX  (6-5-2022)";
   forecastcard4TempEL.textContent = "Temperature: " + fiveDayForecast[3].temp;
   forecastcard4WindEL.textContent = "Wind: " + fiveDayForecast[3].wind + " mph";
   forecastcard4HumidityEL.textContent = "Humidity: " + fiveDayForecast[3].humidity + " %";
+  forecastIcon4El.src = fiveDayForecast[3].wxImgLink;
 
   // forecastcard5CityDateEL.textContent = "Austin, TX  (6-6-2022)";
   forecastcard5TempEL.textContent = "Temperature: " + fiveDayForecast[4].temp;
   forecastcard5WindEL.textContent = "Wind: " + fiveDayForecast[4].wind + " mph";
   forecastcard5HumidityEL.textContent = "Humidity: " + fiveDayForecast[4].humidity + " %";
+  forecastIcon5El.src = fiveDayForecast[4].wxImgLink;
 
 }
 
@@ -322,7 +335,7 @@ function convertCitytoLATLON(city) {
 
   // Hardcode bypass for debug
   outputArray[0] = "33.44";
-  outputArray[1] = "-94.04";
+  outputArray[1] = "-117.04";
 
   return outputArray
 }
@@ -417,6 +430,7 @@ function openWeatherFetch(apiURL) {
       console.log("[openWeatherFetch] UV Index: " + data.hourly[0].uvi);
       console.log("[openWeatherFetch] Time: " + data.hourly[0].dt);
       console.log("[openWeatherFetch] UTC Offset: " + data.timezone_offset);
+      console.log("[openWeatherFetch] Weather Icon: " + data.hourly[0].weather[0].icon);
 
       outputArray[0] = data.hourly[0].dt;
       outputArray[1] = data.timezone_offset;
@@ -430,6 +444,9 @@ function openWeatherFetch(apiURL) {
       currentCityWeather.humidity = data.hourly[0].humidity;
       currentCityWeather.uvIndex = data.hourly[0].uvi;
       currentCityWeather.date = moment(data.hourly[0].dt, "X").format("MMM Do YYYY");
+      currentCityWeather.wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[0].weather[0].icon + "@2x.png";
+
+      console.log("[openWeatherFetch] Weather Icon: " + currentCityWeather.wxImgLink);
 
       //++++++++++ Update 5 Day Array ++++++++++
 
@@ -438,30 +455,35 @@ function openWeatherFetch(apiURL) {
       fiveDayForecast[0].temp = data.daily[1].temp.day;
       fiveDayForecast[0].wind = data.daily[1].wind_speed;
       fiveDayForecast[0].humidity = data.daily[1].humidity;
+      fiveDayForecast[0].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[1].weather[0].icon + "@2x.png";
 
       //Day2
       fiveDayForecast[1].date = moment(data.daily[2].dt, "X").format("MMM Do YYYY");
       fiveDayForecast[1].temp = data.daily[2].temp.day;
       fiveDayForecast[1].wind = data.daily[2].wind_speed;
       fiveDayForecast[1].humidity = data.daily[2].humidity;
+      fiveDayForecast[1].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[2].weather[0].icon + "@2x.png";
 
       //Day3
       fiveDayForecast[2].date = moment(data.daily[3].dt, "X").format("MMM Do YYYY");
       fiveDayForecast[2].temp = data.daily[3].temp.day;
       fiveDayForecast[2].wind = data.daily[3].wind_speed;
       fiveDayForecast[2].humidity = data.daily[3].humidity;
+      fiveDayForecast[2].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[3].weather[0].icon + "@2x.png";
 
       //Day4
       fiveDayForecast[3].date = moment(data.daily[4].dt, "X").format("MMM Do YYYY");
       fiveDayForecast[3].temp = data.daily[4].temp.day;
       fiveDayForecast[3].wind = data.daily[4].wind_speed;
       fiveDayForecast[3].humidity = data.daily[4].humidity;
+      fiveDayForecast[3].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[4].weather[0].icon + "@2x.png";
 
       //Day5
       fiveDayForecast[4].date = moment(data.daily[5].dt, "X").format("MMM Do YYYY");
       fiveDayForecast[4].temp = data.daily[5].temp.day;
       fiveDayForecast[4].wind = data.daily[5].wind_speed;
       fiveDayForecast[4].humidity = data.daily[5].humidity;
+      fiveDayForecast[4].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[5].weather[0].icon + "@2x.png";
 
       // console.log("[openWeatherFetchARRAY] Temp: " + outputArray[5]);
 
