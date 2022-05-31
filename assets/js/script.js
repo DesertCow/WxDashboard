@@ -54,20 +54,22 @@ var forecastIcon5El = document.querySelector(".day5Icon");
 // ################# Search Text Box #################
 
 var searchBoxInput = document.querySelector(".searchBoxInput");
+var searchHistoryListEl = document.querySelector(".searchHistoryList");
 
 // ################# Button Decleration #################
 
 var searchButton = document.querySelector(".searchBtn");
 
-var cityButtonn1 = document.querySelector(".cityBtn1");
-var cityButtonn2 = document.querySelector(".cityBtn2");
-var cityButtonn3 = document.querySelector(".cityBtn3");
-var cityButtonn4 = document.querySelector(".cityBtn4");
-var cityButtonn5 = document.querySelector(".cityBtn5");
-var cityButtonn6 = document.querySelector(".cityBtn6");
-var cityButtonn7 = document.querySelector(".cityBtn7");
-var cityButtonn8 = document.querySelector(".cityBtn8");
+var cityButton1 = document.querySelector(".cityBtn1");
+// var cityButton2 = document.querySelector(".cityBtn2");
+// var cityButton3 = document.querySelector(".cityBtn3");
+// var cityButton4 = document.querySelector(".cityBtn4");
+// var cityButton5 = document.querySelector(".cityBtn5");
+// var cityButton6 = document.querySelector(".cityBtn6");
+// var cityButton7 = document.querySelector(".cityBtn7");
+// var cityButton8 = document.querySelector(".cityBtn8");
 
+let searchHistory = [];
 
 let currentCityWeather = {
   "city": "Austin",
@@ -123,64 +125,78 @@ var fiveDayForecast = [
 
 searchButton.addEventListener("click", function (clickEvent) {
 
-  console.log("Search Button Clicked! SEARCH = " + searchBoxInput.value);
+  if (searchBoxInput.value) {
 
-  currentCityWeatherUpdate(searchBoxInput.value);
+    console.log("Search Button Clicked! SEARCH = " + searchBoxInput.value);
+
+    currentCityWeatherUpdate(searchBoxInput.value);
+
+    searchHistory.push(searchBoxInput.value);
+
+    //FOR LOOP
+    searchHistoryListEl.append('<li><button type="button" class="btn cityBtn8 btn-primary btn-lg btn-block m-3">' + searchHistory[0] + '</button></li>')
+
+    // Update local storage to match currentCityWeather and fiveDayForecast
 
 
-  // Update local storage to match currentCityWeather and fiveDayForecast
+    refreshPageData();
 
-  refreshPageData();
+  }
+  else {
+    window.alert("Empty Search Input!");
+  }
 
-});
 
-cityButtonn1.addEventListener("click", function (clickEvent) {
-
-  console.log("City Button #1 Clicked!");
-
-});
-
-cityButtonn2.addEventListener("click", function (clickEvent) {
-
-  console.log("City Button #2 Clicked!");
-
-});
-
-cityButtonn3.addEventListener("click", function (clickEvent) {
-
-  console.log("City Button #3 Clicked!");
 
 });
 
-cityButtonn4.addEventListener("click", function (clickEvent) {
+// cityButton1.addEventListener("click", function (clickEvent) {
 
-  console.log("City Button #4 Clicked!");
+//   console.log("City Button #1 Clicked!");
 
-});
+// });
 
-cityButtonn5.addEventListener("click", function (clickEvent) {
+// cityButton2.addEventListener("click", function (clickEvent) {
 
-  console.log("City Button #5 Clicked!");
+//   console.log("City Button #2 Clicked!");
 
-});
+// });
 
-cityButtonn6.addEventListener("click", function (clickEvent) {
+// cityButton3.addEventListener("click", function (clickEvent) {
 
-  console.log("City Button #6 Clicked!");
+//   console.log("City Button #3 Clicked!");
 
-});
+// });
 
-cityButtonn7.addEventListener("click", function (clickEvent) {
+// cityButton4.addEventListener("click", function (clickEvent) {
 
-  console.log("City Button #7 Clicked!");
+//   console.log("City Button #4 Clicked!");
 
-});
+// });
 
-cityButtonn8.addEventListener("click", function (clickEvent) {
+// cityButton5.addEventListener("click", function (clickEvent) {
 
-  console.log("City Button #8 Clicked!");
+//   console.log("City Button #5 Clicked!");
 
-});
+// });
+
+// cityButton6.addEventListener("click", function (clickEvent) {
+
+//   console.log("City Button #6 Clicked!");
+
+// });
+
+// cityButton7.addEventListener("click", function (clickEvent) {
+
+//   console.log("City Button #7 Clicked!");
+
+// });
+
+// cityButton8.addEventListener("click", function (clickEvent) {
+
+//   console.log("City Button #8 Clicked!");
+
+// });
 
 
 // ############################ Mouse Over/Out Listeners ###############################
@@ -372,12 +388,12 @@ function cityWeatherFetch(location) {
     console.log("[cityWeatherFetch] UV Index: " + currentCityWeather.uvIndex);
     // console.log("[cityWeatherFetch] Time: " + resultArray[4]);
     // console.log("[cityWeatherFetch] UTC Offset: " + resultArray[5]);
+    console.log("Search 0 =" + searchHistory[0]);
+    console.log("Search 1 =" + searchHistory[1]);
+    console.log("Search 2 =" + searchHistory[2]);
     refreshPageData();
 
-  }, 5000);
-
-
-
+  }, 2000);
 
 
 }
@@ -515,6 +531,7 @@ function init() {
 init();
 
 // Main Code
+
 
 
 
