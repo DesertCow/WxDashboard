@@ -69,7 +69,15 @@ var cityButton1 = document.querySelector(".cityBtn1");
 // var cityButton7 = document.querySelector(".cityBtn7");
 // var cityButton8 = document.querySelector(".cityBtn8");
 
-let searchHistory = [];
+var searchHistory = [];
+
+var localHistory = JSON.parse(localStorage.getItem("wxSearchHistory"));
+
+
+if (localHistory) {
+  searchHistory = localHistory;
+  console.log("Loaded Local History: " + localHistory);
+}
 
 let currentCityWeather = {
   "city": "Austin",
@@ -135,6 +143,10 @@ searchButton.addEventListener("click", function (clickEvent) {
 
     searchHistory.push(searchBoxInput.value);
 
+    localStorage.setItem("wxSearchHistory", JSON.stringify(searchHistory));
+
+    var currentUser = JSON.parse(localStorage.getItem("wxSearchHistory"));
+
     //FOR LOOP
     var cityAppend = 'class="card-body cityButtonShadow text-center p-2 m-2 cityButton">' + searchHistory[0];
     console.log("CityAppend = " + cityAppend);
@@ -147,6 +159,7 @@ searchButton.addEventListener("click", function (clickEvent) {
     // console.log("<li class=\"card-body cityButtonShadow text-center p-2 m-2 cityButton\">" + searchHistory[0] + "</li>");
 
     // Update local storage to match currentCityWeather and fiveDayForecast
+
 
 
     refreshPageData();

@@ -53,7 +53,7 @@ Version 0.1</h5>
 ---
 <p align="center"> <b>GIVEN</b> a weather dashboard with form inputs<br><br></p>
 <p align="left"><b>WHEN</b> I search for a city<br>
-❌ THEN I am presented with current and future conditions for that city and that city is added to the search history<br>
+✔️ THEN I am presented with current and future conditions for that city and that city is added to the search history<br>
 <b>WHEN</b> I view current weather conditions for that city <br>
 ✔️ THEN I am presented with the city name, the date, an icon representation of weather conditions, the temperature, the humidity, the wind speed, and the UV index<br>
 <b>WHEN</b> I view the UV index<br>
@@ -63,7 +63,7 @@ Version 0.1</h5>
 <b>WHEN</b> I click on a city in the search history<br>
 ❌ THEN I am again presented with current and future conditions for that city<br>
 <b>WHEN</b> I refresh the page<br>
-❌ THEN the saved events persist<br>
+✔️ THEN the saved events persist<br>
 <br>
 <br>
 <br>
