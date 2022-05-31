@@ -5,8 +5,13 @@
   --hourBoxColor: #D4A373;
   --meetingBoxColor: #FAEDCD;
 
-  --saveBoxColor: #CCD5AE;
-  --saveBoxShade: #515B2F;
+  --forecastDaysBG: #44b9e3;
+
+  --fiveDayTextBG: #13293d;
+  --fiveDayText: #fff;
+
+  --cityCardBorder: #090909;
+  
 
 }
 
@@ -34,7 +39,31 @@ body {
 }
 
 
+.cityCard {
+  border-style: solid;
+  border-radius: 6px;
+  outline-color: var(--cityCardBorder);
+}
 
+.forecastCard {
+  font-size: 30px;
+  background-color: var(--forecastDaysBG);
+}
+
+.fiveDayText {
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-left: 20%;
+  background: var(--fiveDayTextBG);
+  text-align: center;
+  min-height: 50px;
+  min-width: 100%;
+  color: var(--fiveDayText);
+}
+
+div h4 {
+  font-size: 20px;
+}
 
 
 /* ======================== Footer ======================== */
@@ -48,3 +77,4 @@ footer {
   border-bottom:30px #879274;
   width: 100%;
 }
+
