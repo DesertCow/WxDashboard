@@ -6,6 +6,8 @@
 
 var currentTime = moment();
 
+var superSecretAPIKey = "9c040bb6e1db52e48386cf880254ac09";
+
 // ################# Live City Card #################
 var liveCityDateEl = document.querySelector(".liveCityDate");
 var liveCityTempEl = document.querySelector(".liveCityTemp");
@@ -118,6 +120,7 @@ searchButton.addEventListener("click", function (clickEvent) {
   console.log("Search Button Clicked! SEARCH = " + searchBoxInput.value);
 
   currentCityWeatherUpdate(searchBoxInput.value);
+
 
   // Update local storage to match currentCityWeather and fiveDayForecast
 
@@ -233,11 +236,31 @@ function currentCityWeatherUpdate(searchCity) {
   var outputLATLON = new Array(2);
   var newCityWeather = {};
 
+  // currentCityWeather.city = searchCity;
 
   console.log("Kicking off new search with " + searchCity);
 
   // Convert City to LAT/LON to API call
   outputLATLON = convertCitytoLATLON(searchCity);
+
+  console.log("TIMEOUT START!");
+
+  // setTimeout(() => {
+  //   console.log("Delayed for 1 second.");
+  // }, "100000")
+
+  // setTimeout(() => {
+  //   // console.log("[cityWeatherFetch] Temp: " + currentCityWeather.temp);
+  //   // console.log("[cityWeatherFetch] Wind: " + currentCityWeather.wind);
+  //   // console.log("[cityWeatherFetch] Humidity: " + currentCityWeather.humidity);
+  //   // console.log("[cityWeatherFetch] UV Index: " + currentCityWeather.uvIndex);
+  //   // console.log("[cityWeatherFetch] Time: " + resultArray[4]);
+  //   // console.log("[cityWeatherFetch] UTC Offset: " + resultArray[5]);
+  //   refreshPageData();
+
+  // }, 10000);
+
+  console.log("TIMEOUT END!");
 
   console.log("[currentCityWeatherUpdate] || LAT = " + outputLATLON[0] + " || LON = " + outputLATLON[1]);
 
@@ -249,6 +272,7 @@ function currentCityWeatherUpdate(searchCity) {
   // Update Program Array with Data returned from function above
   //currentCityWeather = newCityWeather;
 
+
   //refreshPageData();
 
 
@@ -258,12 +282,45 @@ function currentCityWeatherUpdate(searchCity) {
 }
 
 // ################# convertCitytoLATLON #################
-function convertCitytoLATLON() {
+function convertCitytoLATLON(city) {
 
   var outputArray = new Array(2);
 
   //needs logic to convert City to LAT/LON
 
+  var finalAPICall2 = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + superSecretAPIKey;
+
+  // console.log("City CAll = " + finalAPICall2)
+
+  // fetch(finalAPICall2)
+  //   .then(function (response) {
+
+  //     // Check the console first to see the response.status
+  //     console.log(response.status);
+
+  //     if (response.status === 200) {
+  //       console.log("Upload Valid: " + response.status);
+  //     }
+  //     else {
+  //       console.log("ERROR: Upload invalid: " + response.status);
+  //     }
+
+  //     return response.json();
+
+  //   })
+  //   .then(function (data) {
+
+  //     console.log("CITY LAT/LON: " + data[0].lat + "," + data[0].lon);
+
+  //     outputArray[0] = data[0].lat;
+  //     outputArray[1] = data[0].lon;
+
+  //     return outputArray
+  //     //console.log(data);
+  //   });
+
+
+  // Hardcode bypass for debug
   outputArray[0] = "33.44";
   outputArray[1] = "-94.04";
 
@@ -304,7 +361,7 @@ function cityWeatherFetch(location) {
     // console.log("[cityWeatherFetch] UTC Offset: " + resultArray[5]);
     refreshPageData();
 
-  }, 2000);
+  }, 5000);
 
 
 
@@ -316,9 +373,8 @@ function cityWeatherFetch(location) {
 // ################# openWeatherAPICallGen #################
 function openWeatherAPICallGen(lat, lon, exclude) {
 
-  var superSecretAPIKey = "9c040bb6e1db52e48386cf880254ac09";
-
   var finalAPIcall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=" + exclude + "&appid=" + superSecretAPIKey + "&units=imperial";
+
 
   console.log("[openWeatherAPICall] = " + finalAPIcall);
 
@@ -373,11 +429,39 @@ function openWeatherFetch(apiURL) {
       currentCityWeather.wind = data.hourly[0].wind_speed;
       currentCityWeather.humidity = data.hourly[0].humidity;
       currentCityWeather.uvIndex = data.hourly[0].uvi;
-
-
       currentCityWeather.date = moment(data.hourly[0].dt, "X").format("MMM Do YYYY");
 
+      //++++++++++ Update 5 Day Array ++++++++++
 
+      //Day1
+      fiveDayForecast[0].date = moment(data.daily[1].dt, "X").format("MMM Do YYYY");
+      fiveDayForecast[0].temp = data.daily[1].temp.day;
+      fiveDayForecast[0].wind = data.daily[1].wind_speed;
+      fiveDayForecast[0].humidity = data.daily[1].humidity;
+
+      //Day2
+      fiveDayForecast[1].date = moment(data.daily[2].dt, "X").format("MMM Do YYYY");
+      fiveDayForecast[1].temp = data.daily[2].temp.day;
+      fiveDayForecast[1].wind = data.daily[2].wind_speed;
+      fiveDayForecast[1].humidity = data.daily[2].humidity;
+
+      //Day3
+      fiveDayForecast[2].date = moment(data.daily[3].dt, "X").format("MMM Do YYYY");
+      fiveDayForecast[2].temp = data.daily[3].temp.day;
+      fiveDayForecast[2].wind = data.daily[3].wind_speed;
+      fiveDayForecast[2].humidity = data.daily[3].humidity;
+
+      //Day4
+      fiveDayForecast[3].date = moment(data.daily[4].dt, "X").format("MMM Do YYYY");
+      fiveDayForecast[3].temp = data.daily[4].temp.day;
+      fiveDayForecast[3].wind = data.daily[4].wind_speed;
+      fiveDayForecast[3].humidity = data.daily[4].humidity;
+
+      //Day5
+      fiveDayForecast[4].date = moment(data.daily[5].dt, "X").format("MMM Do YYYY");
+      fiveDayForecast[4].temp = data.daily[5].temp.day;
+      fiveDayForecast[4].wind = data.daily[5].wind_speed;
+      fiveDayForecast[4].humidity = data.daily[5].humidity;
 
       // console.log("[openWeatherFetchARRAY] Temp: " + outputArray[5]);
 
