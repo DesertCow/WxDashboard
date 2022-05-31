@@ -28,7 +28,7 @@
       <div class="row">
         <searchbar class="col-2">
           <textarea class="form-control searchBoxInput d-flex justify-content-center" rows="1" style="height:50%; "placeholder="Irvine"></textarea>
-          <button type="button" class="btn btn-primary  m-3">Search</button>
+          <button type="button" class="btn btn-primary searchBtn m-3">Search</button>
         </searchbar>
         <cityCard class="col-8 m-3">
             <div class="jumbotron cityCard">
@@ -64,7 +64,7 @@
           <div class="col">
             <div class="card forecastCard" style="width: 12rem; height: 30rem;">
               <div class="card-body">
-                <h4 class="forecastCard1-CityDate">##CITY-NAME## (##Date##)</h4>
+                <h4 id="forecastCard1CityDate">##CITY-NAME## (##Date##)</h4>
                 <img src="./assets/img/Dev_Sun.png" alt="Current Weather Icon" style="width: 50px; margin:20px;">
                 <p class="card-text mt-5 m-3 day1ForeTemp">Temp: </p>
                 <p class="card-text m-3 day1ForeWind">Wind: </p>
@@ -75,7 +75,7 @@
           <div class="col">
             <div class="card forecastCard" style="width: 12rem; height: 30rem;">
               <div class="card-body">
-                <h4 class="forecastCard2-CityDate">##CITY-NAME## (##Date##)</h4>
+                <h4 class="forecastCard2CityDate">##CITY-NAME## (##Date##)</h4>
                 <img src="./assets/img/Dev_Sun.png" alt="Current Weather Icon" style="width: 50px; margin:20px;">
                 <p class="card-text mt-5 m-3 day2ForeTemp">Temp: </p>
                 <p class="card-text m-3 day2ForeWind">Wind: </p>
@@ -86,7 +86,7 @@
           <div class="col">
             <div class="card forecastCard" style="width: 12rem; height: 30rem;">
               <div class="card-body">
-                <h4 class="forecastCard3-CityDate">##CITY-NAME## (##Date##)</h4>
+                <h4 class="forecastCard3CityDate">##CITY-NAME## (##Date##)</h4>
                 <img src="./assets/img/Dev_Sun.png" alt="Current Weather Icon" style="width: 50px; margin:20px;">
                 <p class="card-text mt-5 m-3 day3ForeTemp">Temp: </p>
                 <p class="card-text m-3 day3ForeWind">Wind: </p>
@@ -97,7 +97,7 @@
           <div class="col">
             <div class="card forecastCard" style="width: 12rem; height: 30rem;">
               <div class="card-body">
-                <h4 class="forecastCard4-CityDate">##CITY-NAME## (##Date##)</h4>
+                <h4 class="forecastCard4CityDate">##CITY-NAME## (##Date##)</h4>
                 <img src="./assets/img/Dev_Sun.png" alt="Current Weather Icon" style="width: 50px; margin:20px;">
                 <p class="card-text mt-5 m-3 day4ForeTemp">Temp: </p>
                 <p class="card-text m-3 day4ForeWind">Wind: </p>
@@ -108,11 +108,11 @@
           <div class="col">
             <div class="card forecastCard" style="width: 12rem; height: 30rem;">
               <div class="card-body">
-                <h4 class="forecastCard5-CityDate">##CITY-NAME## (##Date##)</h4>
+                <h4 class="forecastCard5CityDate">##CITY-NAME## (##Date##)</h4>
                 <img src="./assets/img/Dev_Sun.png" alt="Current Weather Icon" style="width: 50px; margin:20px;">
-                <p class="card-text mt-5 m-3 day4ForeTemp">Temp: </p>
-                <p class="card-text m-3 day4ForeWind">Wind: </p>
-                <p class="card-text m-3 day4ForeHumidity">Humidity: </p>
+                <p class="card-text mt-5 m-3 day5ForeTemp">Temp: </p>
+                <p class="card-text m-3 day5ForeWind">Wind: </p>
+                <p class="card-text m-3 day5ForeHumidity">Humidity: </p>
               </div>
             </div>
           </div>
@@ -121,25 +121,25 @@
 
   </div>
 
+  <footer>
+    <ul class="align-items-center p-3">
+      <li>
+        <h5>Made by 🌵 Desert-Cow 🐄</h5>
+      </li>
+      <li>
+        <p>&copy; 2022 Monkey See Monkey Do LLC.</p>
+      </li>
+    </ul>
+  </footer>
+
+  <!-- ========= Main Script Call ========= -->
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+  <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  <script src="./assets/js/script.js"></script>
   
 </body>
-
-<footer>
-  <ul class="align-items-center p-3">
-    <li>
-      <h5>Made by 🌵 Desert-Cow 🐄</h5>
-    </li>
-    <li>
-      <p>&copy; 2022 Monkey See Monkey Do LLC.</p>
-    </li>
-  </ul>
-</footer>
-
-<!-- ========= Main Script Call ========= -->
-<!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
-<script src="./assets/js/script.js"></script>
 
 </html>
