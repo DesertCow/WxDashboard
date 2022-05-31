@@ -42,14 +42,20 @@ body {
 
 .cityCard {
   border-style: solid;
-  border-radius: 6px;
+  border-radius: 12px;
   outline-color: var(--cityCardBorder);
+  font-family: 'Radio Canada', sans-ser;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
 }
 
 .forecastCard {
   font-size: 15px;
   font-weight: 800;
   background-color: var(--forecastDaysBG);
+  font-family: 'Radio Canada', sans-ser;
 }
 
 .fiveDayText {

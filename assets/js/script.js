@@ -78,7 +78,7 @@ let currentCityWeather = {
   "temp": "55",
   "wind": "55",
   "humidity": "84",
-  "uvIndex": ".67",
+  "uvIndex": "7",
 
 }
 
@@ -484,7 +484,21 @@ function refreshPageData() {
   liveCityHumidityEl.textContent = "Humidity: " + currentCityWeather.humidity + " %";
   liveCityUVEl.textContent = "UV Index: " + currentCityWeather.uvIndex;
   liveCityIconEl.src = currentCityWeather.wxImgLink;
-  // Refresh ICON
+
+  //Logic to define UV Index Color
+  if (currentCityWeather.uvIndex < 3) {
+
+    liveCityUVEl.style.color = "green";
+  } else if (currentCityWeather.uvIndex < 6) {
+    liveCityUVEl.style.color = "yellow";
+  } else if (currentCityWeather.uvIndex < 8) {
+    liveCityUVEl.style.color = "#fb5607";
+  } else if (currentCityWeather.uvIndex < 11) {
+    liveCityUVEl.style.color = "red";
+  } else if (currentCityWeather.uvIndex > 11) {
+    liveCityUVEl.style.color = "purple";
+  }
+
 
   //########## Day 1 Elements ##########
   forecastcard1CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[0].date;
@@ -520,8 +534,6 @@ function refreshPageData() {
   forecastcard5WindEL.textContent = "Wind: " + fiveDayForecast[4].wind + " mph";
   forecastcard5HumidityEL.textContent = "Humidity: " + fiveDayForecast[4].humidity + " %";
   forecastIcon5El.src = fiveDayForecast[4].wxImgLink;
-
-  //Logic to define UV Index Color
 
 }
 
