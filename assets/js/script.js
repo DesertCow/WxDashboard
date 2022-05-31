@@ -127,7 +127,9 @@ searchButton.addEventListener("click", function (clickEvent) {
 
   if (searchBoxInput.value) {
 
-    console.log("Search Button Clicked! SEARCH = " + searchBoxInput.value);
+    //console.log("Search Button Clicked! SEARCH = " + searchBoxInput.value);
+
+    currentCityWeather.city = searchBoxInput.value;
 
     currentCityWeatherUpdate(searchBoxInput.value);
 
@@ -204,59 +206,12 @@ searchButton.addEventListener("click", function (clickEvent) {
 
 
 
+
+// ################# FUNCTION_1 #################
+// ################# FUNCTION_1 #################
+// ################# FUNCTION_1 #################
+
 // =============================== Function Decleration ================================
-
-
-// ################# FUNCTION_1 #################
-
-function refreshPageData() {
-
-  // Add code to update Local storeage each time the page is updaed.
-
-  liveCityDateEl.textContent = currentCityWeather.city + " " + currentCityWeather.date;
-  liveCityTempEl.textContent = "Temperature: " + currentCityWeather.temp + " (F)";
-  liveCityWindEl.textContent = "Wind: " + currentCityWeather.wind + " mph";
-  liveCityHumidityEl.textContent = "Humidity: " + currentCityWeather.humidity + " %";
-  liveCityUVEl.textContent = "UV Index: " + currentCityWeather.uvIndex;
-  liveCityIconEl.src = currentCityWeather.wxImgLink;
-  // Refresh ICON
-
-  //forecastcard1CityDateEL.textContent = "Austin, TX  (6-2-2022)";
-  forecastcard1TempEL.textContent = "Temperature: " + fiveDayForecast[0].temp;
-  forecastcard1WindEL.textContent = "Wind: " + fiveDayForecast[0].wind + " mph";
-  forecastcard1HumidityEL.textContent = "Humidity: " + fiveDayForecast[0].humidity + " %";
-  forecastIcon1El.src = fiveDayForecast[0].wxImgLink;
-
-  // forecastcard2CityDateEL.textContent = "Austin, TX  (6-3-2022)";
-  forecastcard2TempEL.textContent = "Temperature: " + fiveDayForecast[1].temp;
-  forecastcard2WindEL.textContent = "Wind: " + fiveDayForecast[1].wind + " mph";
-  forecastcard2HumidityEL.textContent = "Humidity: " + fiveDayForecast[1].humidity + " %";
-  forecastIcon2El.src = fiveDayForecast[1].wxImgLink;
-
-  // forecastcard3CityDateEL.textContent = "Austin, TX  (6-4-2022)";
-  forecastcard3TempEL.textContent = "Temperature: " + fiveDayForecast[2].temp;
-  forecastcard3WindEL.textContent = "Wind: " + fiveDayForecast[2].wind + " mph";
-  forecastcard3HumidityEL.textContent = "Humidity: " + fiveDayForecast[2].humidity + " %";
-  forecastIcon3El.src = fiveDayForecast[2].wxImgLink;
-
-  // forecastcard4CityDateEL.textContent = "Austin, TX  (6-5-2022)";
-  forecastcard4TempEL.textContent = "Temperature: " + fiveDayForecast[3].temp;
-  forecastcard4WindEL.textContent = "Wind: " + fiveDayForecast[3].wind + " mph";
-  forecastcard4HumidityEL.textContent = "Humidity: " + fiveDayForecast[3].humidity + " %";
-  forecastIcon4El.src = fiveDayForecast[3].wxImgLink;
-
-  // forecastcard5CityDateEL.textContent = "Austin, TX  (6-6-2022)";
-  forecastcard5TempEL.textContent = "Temperature: " + fiveDayForecast[4].temp;
-  forecastcard5WindEL.textContent = "Wind: " + fiveDayForecast[4].wind + " mph";
-  forecastcard5HumidityEL.textContent = "Humidity: " + fiveDayForecast[4].humidity + " %";
-  forecastIcon5El.src = fiveDayForecast[4].wxImgLink;
-
-}
-
-// ################# FUNCTION_1 #################
-// ################# FUNCTION_1 #################
-// ################# FUNCTION_1 #################
-
 
 
 // ################# currentCityWeatherUpdate #################
@@ -272,7 +227,11 @@ function currentCityWeatherUpdate(searchCity) {
   // Convert City to LAT/LON to API call
   outputLATLON = convertCitytoLATLON(searchCity);
 
-  console.log("TIMEOUT START!");
+  // Add Wait for API call to complete before attempting to fetch newCityData
+
+  cityWeatherFetch(outputLATLON);
+
+  // console.log("TIMEOUT START!");
 
   // setTimeout(() => {
   //   console.log("Delayed for 1 second.");
@@ -289,14 +248,14 @@ function currentCityWeatherUpdate(searchCity) {
 
   // }, 10000);
 
-  console.log("TIMEOUT END!");
+  // console.log("TIMEOUT END!");
 
-  console.log("[currentCityWeatherUpdate] || LAT = " + outputLATLON[0] + " || LON = " + outputLATLON[1]);
+  // console.log("[currentCityWeatherUpdate] || LAT = " + outputLATLON[0] + " || LON = " + outputLATLON[1]);
 
   // Function to call API to get weather for City based on LAT/LON || Return 
 
   // newCityWeather = cityWeatherFetch(outputLATLON);
-  cityWeatherFetch(outputLATLON);
+  //cityWeatherFetch(outputLATLON);
 
   // Update Program Array with Data returned from function above
   //currentCityWeather = newCityWeather;
@@ -321,37 +280,39 @@ function convertCitytoLATLON(city) {
 
   // console.log("City CAll = " + finalAPICall2)
 
-  // fetch(finalAPICall2)
-  //   .then(function (response) {
+  //Add Hold logic to wait for repsone before releaseing function
 
-  //     // Check the console first to see the response.status
-  //     console.log(response.status);
+  fetch(finalAPICall2)
+    .then(function (response) {
 
-  //     if (response.status === 200) {
-  //       console.log("Upload Valid: " + response.status);
-  //     }
-  //     else {
-  //       console.log("ERROR: Upload invalid: " + response.status);
-  //     }
+      // Check the console first to see the response.status
+      console.log(response.status);
 
-  //     return response.json();
+      if (response.status === 200) {
+        console.log("Upload Valid: " + response.status);
+      }
+      else {
+        console.log("ERROR: Upload invalid: " + response.status);
+      }
 
-  //   })
-  //   .then(function (data) {
+      return response.json();
 
-  //     console.log("CITY LAT/LON: " + data[0].lat + "," + data[0].lon);
+    })
+    .then(function (data) {
 
-  //     outputArray[0] = data[0].lat;
-  //     outputArray[1] = data[0].lon;
+      console.log("[convertCitytoLATLON] CITY LAT/LON: " + data[0].lat + "," + data[0].lon);
 
-  //     return outputArray
-  //     //console.log(data);
-  //   });
+      outputArray[0] = data[0].lat;
+      outputArray[1] = data[0].lon;
+
+      return outputArray
+      //console.log(data);
+    });
 
 
   // Hardcode bypass for debug
-  outputArray[0] = "33.44";
-  outputArray[1] = "-117.04";
+  // outputArray[0] = "33.44";
+  // outputArray[1] = "-117.04";
 
   return outputArray
 }
@@ -363,7 +324,6 @@ function cityWeatherFetch(location) {
   var lat = location[0];
   var lon = location[1];
   var apiCall = "VOID";
-  //var resultArray = new Array(6);
 
   let cityWeather = {
     "city": "VOID",
@@ -381,6 +341,8 @@ function cityWeatherFetch(location) {
 
   var apiResult = openWeatherFetch(apiCall);
 
+
+  // Timeout to wait for response...
   setTimeout(() => {
     console.log("[cityWeatherFetch] Temp: " + currentCityWeather.temp);
     console.log("[cityWeatherFetch] Wind: " + currentCityWeather.wind);
@@ -508,6 +470,52 @@ function openWeatherFetch(apiURL) {
     });
 
   return outputResponse;
+}
+
+
+// ################# refreshPageData #################
+function refreshPageData() {
+
+  // Add code to update Local storeage each time the page is updaed.
+
+  liveCityDateEl.textContent = currentCityWeather.city + " " + currentCityWeather.date;
+  liveCityTempEl.textContent = "Temperature: " + currentCityWeather.temp + " (F)";
+  liveCityWindEl.textContent = "Wind: " + currentCityWeather.wind + " mph";
+  liveCityHumidityEl.textContent = "Humidity: " + currentCityWeather.humidity + " %";
+  liveCityUVEl.textContent = "UV Index: " + currentCityWeather.uvIndex;
+  liveCityIconEl.src = currentCityWeather.wxImgLink;
+  // Refresh ICON
+
+  //forecastcard1CityDateEL.textContent = "Austin, TX  (6-2-2022)";
+  forecastcard1TempEL.textContent = "Temperature: " + fiveDayForecast[0].temp;
+  forecastcard1WindEL.textContent = "Wind: " + fiveDayForecast[0].wind + " mph";
+  forecastcard1HumidityEL.textContent = "Humidity: " + fiveDayForecast[0].humidity + " %";
+  forecastIcon1El.src = fiveDayForecast[0].wxImgLink;
+
+  // forecastcard2CityDateEL.textContent = "Austin, TX  (6-3-2022)";
+  forecastcard2TempEL.textContent = "Temperature: " + fiveDayForecast[1].temp;
+  forecastcard2WindEL.textContent = "Wind: " + fiveDayForecast[1].wind + " mph";
+  forecastcard2HumidityEL.textContent = "Humidity: " + fiveDayForecast[1].humidity + " %";
+  forecastIcon2El.src = fiveDayForecast[1].wxImgLink;
+
+  // forecastcard3CityDateEL.textContent = "Austin, TX  (6-4-2022)";
+  forecastcard3TempEL.textContent = "Temperature: " + fiveDayForecast[2].temp;
+  forecastcard3WindEL.textContent = "Wind: " + fiveDayForecast[2].wind + " mph";
+  forecastcard3HumidityEL.textContent = "Humidity: " + fiveDayForecast[2].humidity + " %";
+  forecastIcon3El.src = fiveDayForecast[2].wxImgLink;
+
+  // forecastcard4CityDateEL.textContent = "Austin, TX  (6-5-2022)";
+  forecastcard4TempEL.textContent = "Temperature: " + fiveDayForecast[3].temp;
+  forecastcard4WindEL.textContent = "Wind: " + fiveDayForecast[3].wind + " mph";
+  forecastcard4HumidityEL.textContent = "Humidity: " + fiveDayForecast[3].humidity + " %";
+  forecastIcon4El.src = fiveDayForecast[3].wxImgLink;
+
+  // forecastcard5CityDateEL.textContent = "Austin, TX  (6-6-2022)";
+  forecastcard5TempEL.textContent = "Temperature: " + fiveDayForecast[4].temp;
+  forecastcard5WindEL.textContent = "Wind: " + fiveDayForecast[4].wind + " mph";
+  forecastcard5HumidityEL.textContent = "Humidity: " + fiveDayForecast[4].humidity + " %";
+  forecastIcon5El.src = fiveDayForecast[4].wxImgLink;
+
 }
 
 
