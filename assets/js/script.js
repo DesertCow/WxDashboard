@@ -136,7 +136,15 @@ searchButton.addEventListener("click", function (clickEvent) {
     searchHistory.push(searchBoxInput.value);
 
     //FOR LOOP
-    searchHistoryListEl.append('<li><button type="button" class="btn cityBtn8 btn-primary btn-lg btn-block m-3">' + searchHistory[0] + '</button></li>')
+    var cityAppend = 'class="card-body cityButtonShadow text-center p-2 m-2 cityButton">' + searchHistory[0];
+    console.log("CityAppend = " + cityAppend);
+
+    // searchHistoryListEl.appendChild($(cityAppend));
+    var cityButtonBuild = document.createElement('li');
+    // appendChild(text);
+    //searchHistoryListEl.append(cityButtonBuild.appendChild(cityAppend));
+    // searchHistoryListEl.append('<li class=\"card-body cityButtonShadow text-center p-2 m-2 cityButton\">' + searchHistory[0] + '</li>');
+    // console.log("<li class=\"card-body cityButtonShadow text-center p-2 m-2 cityButton\">" + searchHistory[0] + "</li>");
 
     // Update local storage to match currentCityWeather and fiveDayForecast
 
