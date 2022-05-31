@@ -17,35 +17,35 @@ var liveCityUVEl = document.querySelector(".liveCityUVindex");
 var liveCityIconEl = document.querySelector(".liveCityIcon");
 
 // ################# Forecast Card Day 1 #################
-var forecastcard1CityDateEL = document.querySelector(".forecastcard1CityDate");
+var forecastcard1CityDateEL = document.querySelector(".forecastCard1CityDate");
 var forecastcard1TempEL = document.querySelector(".day1ForeTemp");
 var forecastcard1WindEL = document.querySelector(".day1ForeWind");
 var forecastcard1HumidityEL = document.querySelector(".day1ForeHumidity");
 var forecastIcon1El = document.querySelector(".day1Icon");
 
 // ################# Forecast Card Day 2 #################
-var forecastcard2CityDateEL = document.querySelector(".forecastcard2CityDate");
+var forecastcard2CityDateEL = document.querySelector(".forecastCard2CityDate");
 var forecastcard2TempEL = document.querySelector(".day2ForeTemp");
 var forecastcard2WindEL = document.querySelector(".day2ForeWind");
 var forecastcard2HumidityEL = document.querySelector(".day2ForeHumidity");
 var forecastIcon2El = document.querySelector(".day2Icon");
 
 // ################# Forecast Card Day 3 #################
-var forecastcard3CityDateEL = document.querySelector(".forecastcard3CityDate");
+var forecastcard3CityDateEL = document.querySelector(".forecastCard3CityDate");
 var forecastcard3TempEL = document.querySelector(".day3ForeTemp");
 var forecastcard3WindEL = document.querySelector(".day3ForeWind");
 var forecastcard3HumidityEL = document.querySelector(".day3ForeHumidity");
 var forecastIcon3El = document.querySelector(".day3Icon");
 
 // ################# Forecast Card Day 4 #################
-var forecastcard4CityDateEL = document.querySelector(".forecastcard4CityDate");
+var forecastcard4CityDateEL = document.querySelector(".forecastCard4CityDate");
 var forecastcard4TempEL = document.querySelector(".day4ForeTemp");
 var forecastcard4WindEL = document.querySelector(".day4ForeWind");
 var forecastcard4HumidityEL = document.querySelector(".day4ForeHumidity");
 var forecastIcon4El = document.querySelector(".day4Icon");
 
 // ################# Forecast Card Day 5 #################
-var forecastcard5CityDateEL = document.querySelector(".forecastcard5CityDate");
+var forecastcard5CityDateEL = document.querySelector(".forecastCard5CityDate");
 var forecastcard5TempEL = document.querySelector(".day5ForeTemp");
 var forecastcard5WindEL = document.querySelector(".day5ForeWind");
 var forecastcard5HumidityEL = document.querySelector(".day5ForeHumidity");
@@ -311,8 +311,8 @@ function convertCitytoLATLON(city) {
 
 
   // Hardcode bypass for debug
-  // outputArray[0] = "33.44";
-  // outputArray[1] = "-117.04";
+  outputArray[0] = "33.44";
+  outputArray[1] = "-117.04";
 
   return outputArray
 }
@@ -486,35 +486,42 @@ function refreshPageData() {
   liveCityIconEl.src = currentCityWeather.wxImgLink;
   // Refresh ICON
 
-  //forecastcard1CityDateEL.textContent = "Austin, TX  (6-2-2022)";
+  //########## Day 1 Elements ##########
+  forecastcard1CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[0].date;
   forecastcard1TempEL.textContent = "Temperature: " + fiveDayForecast[0].temp;
   forecastcard1WindEL.textContent = "Wind: " + fiveDayForecast[0].wind + " mph";
   forecastcard1HumidityEL.textContent = "Humidity: " + fiveDayForecast[0].humidity + " %";
   forecastIcon1El.src = fiveDayForecast[0].wxImgLink;
 
-  // forecastcard2CityDateEL.textContent = "Austin, TX  (6-3-2022)";
+  //########## Day 2 Elements ##########
+  forecastcard2CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[1].date;
   forecastcard2TempEL.textContent = "Temperature: " + fiveDayForecast[1].temp;
   forecastcard2WindEL.textContent = "Wind: " + fiveDayForecast[1].wind + " mph";
   forecastcard2HumidityEL.textContent = "Humidity: " + fiveDayForecast[1].humidity + " %";
   forecastIcon2El.src = fiveDayForecast[1].wxImgLink;
 
-  // forecastcard3CityDateEL.textContent = "Austin, TX  (6-4-2022)";
+  //########## Day 3 Elements ##########
+  forecastcard3CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[2].date;
   forecastcard3TempEL.textContent = "Temperature: " + fiveDayForecast[2].temp;
   forecastcard3WindEL.textContent = "Wind: " + fiveDayForecast[2].wind + " mph";
   forecastcard3HumidityEL.textContent = "Humidity: " + fiveDayForecast[2].humidity + " %";
   forecastIcon3El.src = fiveDayForecast[2].wxImgLink;
 
-  // forecastcard4CityDateEL.textContent = "Austin, TX  (6-5-2022)";
+  //########## Day 4 Elements ##########
+  forecastcard4CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[3].date;
   forecastcard4TempEL.textContent = "Temperature: " + fiveDayForecast[3].temp;
   forecastcard4WindEL.textContent = "Wind: " + fiveDayForecast[3].wind + " mph";
   forecastcard4HumidityEL.textContent = "Humidity: " + fiveDayForecast[3].humidity + " %";
   forecastIcon4El.src = fiveDayForecast[3].wxImgLink;
 
-  // forecastcard5CityDateEL.textContent = "Austin, TX  (6-6-2022)";
+  //########## Day 5 Elements ##########
+  forecastcard5CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[4].date;
   forecastcard5TempEL.textContent = "Temperature: " + fiveDayForecast[4].temp;
   forecastcard5WindEL.textContent = "Wind: " + fiveDayForecast[4].wind + " mph";
   forecastcard5HumidityEL.textContent = "Humidity: " + fiveDayForecast[4].humidity + " %";
   forecastIcon5El.src = fiveDayForecast[4].wxImgLink;
+
+  //Logic to define UV Index Color
 
 }
 
