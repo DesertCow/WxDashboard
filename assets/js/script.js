@@ -56,27 +56,30 @@ var forecastIcon5El = document.querySelector(".day5Icon");
 var searchBoxInput = document.querySelector(".searchBoxInput");
 var searchHistoryListEl = document.querySelector(".searchHistoryList");
 
-// ################# City earch Buttons #################
+// ################# Button Decleration #################
+
+var searchButton = document.querySelector(".searchBtn");
+
+// ################# City Search Buttons #################
 var cityButton1 = document.querySelector(".cityButton1");
 var cityButton2 = document.querySelector(".cityButton2");
 var cityButton3 = document.querySelector(".cityButton3");
 var cityButton4 = document.querySelector(".cityButton4");
 var cityButton5 = document.querySelector(".cityButton5");
 
-// ################# Button Decleration #################
-
-var searchButton = document.querySelector(".searchBtn");
-
 var searchHistory = [];
 
+// Attempt to load previous search history from local storage
 var localHistory = JSON.parse(localStorage.getItem("wxSearchHistory"));
 
 
 if (localHistory) {
   searchHistory = localHistory;
-  console.log("Loaded Local History: " + localHistory);
+  //console.log("Loaded Local History: " + localHistory);
 }
 
+
+// ################# Default/Debug Data Load #################
 let currentCityWeather = {
   "city": "Austin",
   "date": "5-30-2022",
@@ -127,7 +130,7 @@ var fiveDayForecast = [
 ]
 
 
-// // ############################## Button Listeners ##################################
+// ############################## Button Listeners ##################################
 
 searchButton.addEventListener("click", function (clickEvent) {
 
@@ -143,23 +146,6 @@ searchButton.addEventListener("click", function (clickEvent) {
 
     localStorage.setItem("wxSearchHistory", JSON.stringify(searchHistory));
 
-    // var currentUser = JSON.parse(localStorage.getItem("wxSearchHistory"));
-
-    //FOR LOOP
-    var cityAppend = 'class="card-body cityButtonShadow text-center p-2 m-2 cityButton">' + searchHistory[0];
-    console.log("CityAppend = " + cityAppend);
-
-    // searchHistoryListEl.appendChild($(cityAppend));
-    var cityButtonBuild = document.createElement('li');
-    // appendChild(text);
-    //searchHistoryListEl.append(cityButtonBuild.appendChild(cityAppend));
-    // searchHistoryListEl.append('<li class=\"card-body cityButtonShadow text-center p-2 m-2 cityButton\">' + searchHistory[0] + '</li>');
-    // console.log("<li class=\"card-body cityButtonShadow text-center p-2 m-2 cityButton\">" + searchHistory[0] + "</li>");
-
-    // Update local storage to match currentCityWeather and fiveDayForecast
-
-
-
     refreshPageData();
 
   }
@@ -173,7 +159,7 @@ searchButton.addEventListener("click", function (clickEvent) {
 
 cityButton1.addEventListener("click", function (clickEvent) {
 
-  console.log(cityButton1.textContent + " Button Clicked!");
+  //console.log(cityButton1.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[0];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -185,7 +171,7 @@ cityButton1.addEventListener("click", function (clickEvent) {
 
 cityButton2.addEventListener("click", function (clickEvent) {
 
-  console.log(cityButton2.textContent + " Button Clicked!");
+  //console.log(cityButton2.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[1];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -197,7 +183,7 @@ cityButton2.addEventListener("click", function (clickEvent) {
 
 cityButton3.addEventListener("click", function (clickEvent) {
 
-  console.log(cityButton3.textContent + " Button Clicked!");
+  //console.log(cityButton3.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[2];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -209,7 +195,7 @@ cityButton3.addEventListener("click", function (clickEvent) {
 
 cityButton4.addEventListener("click", function (clickEvent) {
 
-  console.log(cityButton4.textContent + " Button Clicked!");
+  //console.log(cityButton4.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[3];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -221,7 +207,7 @@ cityButton4.addEventListener("click", function (clickEvent) {
 
 cityButton5.addEventListener("click", function (clickEvent) {
 
-  console.log(cityButton5.textContent + " Button Clicked!");
+  //console.log(cityButton5.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[4];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -237,13 +223,7 @@ cityButton5.addEventListener("click", function (clickEvent) {
 
 
 
-
-// ################# FUNCTION_1 #################
-// ################# FUNCTION_1 #################
-// ################# FUNCTION_1 #################
-
 // =============================== Function Decleration ================================
-
 
 // ################# currentCityWeatherUpdate #################
 function currentCityWeatherUpdate(searchCity) {
@@ -253,77 +233,42 @@ function currentCityWeatherUpdate(searchCity) {
 
   // currentCityWeather.city = searchCity;
 
-  console.log("Kicking off new search with " + searchCity);
+  //console.log("Kicking off new search with " + searchCity);
 
   // Convert City to LAT/LON to API call
   outputLATLON = convertCitytoLATLON(searchCity);
 
-  // Add Wait for API call to complete before attempting to fetch newCityData
+  //=============================================================
+  // #BUG: NEED EXECUTION TO STOP TILL Code Below has complete! #BUG
+  //=============================================================
 
   cityWeatherFetch(outputLATLON);
 
-  // console.log("TIMEOUT START!");
+  //=============================================================
+  // #BUG: NEED EXECUTION TO STOP TILL Code ^ has complete! #BUG
+  //=============================================================
 
-  // setTimeout(() => {
-  //   console.log("Delayed for 1 second.");
-  // }, "100000")
-
-  // setTimeout(() => {
-  //   // console.log("[cityWeatherFetch] Temp: " + currentCityWeather.temp);
-  //   // console.log("[cityWeatherFetch] Wind: " + currentCityWeather.wind);
-  //   // console.log("[cityWeatherFetch] Humidity: " + currentCityWeather.humidity);
-  //   // console.log("[cityWeatherFetch] UV Index: " + currentCityWeather.uvIndex);
-  //   // console.log("[cityWeatherFetch] Time: " + resultArray[4]);
-  //   // console.log("[cityWeatherFetch] UTC Offset: " + resultArray[5]);
-  //   refreshPageData();
-
-  // }, 10000);
-
-  // console.log("TIMEOUT END!");
-
-  // console.log("[currentCityWeatherUpdate] || LAT = " + outputLATLON[0] + " || LON = " + outputLATLON[1]);
-
-  // Function to call API to get weather for City based on LAT/LON || Return 
-
-  // newCityWeather = cityWeatherFetch(outputLATLON);
-  //cityWeatherFetch(outputLATLON);
-
-  // Update Program Array with Data returned from function above
-  //currentCityWeather = newCityWeather;
-
-
-  //refreshPageData();
-
-
-
-
-  // return ??;
 }
 
 // ################# convertCitytoLATLON #################
 function convertCitytoLATLON(city) {
 
+  // Array of Lat[0]| LON[1]
   var outputArray = new Array(2);
 
-  //needs logic to convert City to LAT/LON
+  //Create API URL Call
+  var convertCityAPICall = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + superSecretAPIKey;
 
-  var finalAPICall2 = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + superSecretAPIKey;
 
-  // console.log("City CAll = " + finalAPICall2)
-
-  //Add Hold logic to wait for repsone before releaseing function
-
-  fetch(finalAPICall2)
+  fetch(convertCityAPICall)
     .then(function (response) {
 
       // Check the console first to see the response.status
-      console.log(response.status);
-
       if (response.status === 200) {
-        console.log("Upload Valid: " + response.status);
+        //console.log("Upload Valid: " + response.status);
       }
       else {
-        console.log("ERROR: Upload invalid: " + response.status);
+        //console.log("ERROR: Upload invalid: " + response.status);
       }
 
       return response.json();
@@ -331,7 +276,7 @@ function convertCitytoLATLON(city) {
     })
     .then(function (data) {
 
-      console.log("[convertCitytoLATLON] CITY LAT/LON: " + data[0].lat + "," + data[0].lon);
+      //console.log("[convertCitytoLATLON] CITY LAT/LON: " + data[0].lat + "," + data[0].lon);
 
       outputArray[0] = data[0].lat;
       outputArray[1] = data[0].lon;
@@ -340,18 +285,25 @@ function convertCitytoLATLON(city) {
       //console.log(data);
     });
 
+  //=============================================================
+  // #BUG: NEED EXECUTION TO STOP TILL Code ^ has complete! #BUG
+  //=============================================================
 
-  // Hardcode bypass for debug
-  outputArray[0] = "33.44";
-  outputArray[1] = "-117.04";
+  // Hardcode Work Around
+  outputArray[0] = "45.67";
+  outputArray[1] = "-111.03";
 
+  //outputArray[0] = "33.63";
+  //outputArray[1] = "-117.87";
+
+  // Return Array of LAT/LON
   return outputArray
 }
 
 // ################# cityWeatherFetch #################
 function cityWeatherFetch(location) {
 
-
+  // Dump Input Array to Vars
   var lat = location[0];
   var lon = location[1];
   var apiCall = "VOID";
@@ -366,28 +318,30 @@ function cityWeatherFetch(location) {
     "uvIndex": "VOID",
   }
 
-  console.log("[cityWeatherFetch] || LAT = " + lat + " || LON = " + lon);
+  //console.log("[cityWeatherFetch] || LAT = " + lat + " || LON = " + lon);
 
   apiCall = openWeatherAPICallGen(lat, lon, "current");
 
   var apiResult = openWeatherFetch(apiCall);
 
+  //=============================================================
+  // #BUG: Timeout work around to deal with API Delay        #BUG
+  //=============================================================
 
-  // Timeout to wait for response...
   setTimeout(() => {
-    console.log("[cityWeatherFetch] Temp: " + currentCityWeather.temp);
-    console.log("[cityWeatherFetch] Wind: " + currentCityWeather.wind);
-    console.log("[cityWeatherFetch] Humidity: " + currentCityWeather.humidity);
-    console.log("[cityWeatherFetch] UV Index: " + currentCityWeather.uvIndex);
-    // console.log("[cityWeatherFetch] Time: " + resultArray[4]);
-    // console.log("[cityWeatherFetch] UTC Offset: " + resultArray[5]);
-    console.log("Search 0 =" + searchHistory[0]);
-    console.log("Search 1 =" + searchHistory[1]);
-    console.log("Search 2 =" + searchHistory[2]);
+    //console.log("[cityWeatherFetch] Temp: " + currentCityWeather.temp);
+    //console.log("[cityWeatherFetch] Wind: " + currentCityWeather.wind);
+    //console.log("[cityWeatherFetch] Humidity: " + currentCityWeather.humidity);
+    //console.log("[cityWeatherFetch] UV Index: " + currentCityWeather.uvIndex);
+    //console.log("[cityWeatherFetch] Time: " + resultArray[4]);
+    //console.log("[cityWeatherFetch] UTC Offset: " + resultArray[5]);
+
+    //console.log("Search 0 =" + searchHistory[0]);
+    //console.log("Search 1 =" + searchHistory[1]);
+    //console.log("Search 2 =" + searchHistory[2]);
     refreshPageData();
 
   }, 2000);
-
 
 }
 
@@ -397,18 +351,12 @@ function openWeatherAPICallGen(lat, lon, exclude) {
 
   var finalAPIcall = "https://api.openweathermap.org/data/2.5/onecall?lat=" + lat + "&lon=" + lon + "&exclude=" + exclude + "&appid=" + superSecretAPIKey + "&units=imperial";
 
-
-  console.log("[openWeatherAPICall] = " + finalAPIcall);
-
   return finalAPIcall;
-
 }
 
 // ################# openWeatherFetch #################
 function openWeatherFetch(apiURL) {
 
-
-  // var requestUrl = 'https://api.github.com/repos/Twitter/chill/issues';
   var outputArray = new Array(6);
   var outputResponse;
 
@@ -418,11 +366,11 @@ function openWeatherFetch(apiURL) {
       //console.log('======= API Resonpose: ' + response.status + ' =======');
 
       if (response.status === 200) {
-        console.log("Upload Valid: " + response.status);
+        //console.log("Upload Valid: " + response.status);
         outputResponse = true;
       }
       else {
-        console.log("ERROR: Upload invalid: " + response.status);
+        //console.log("ERROR: Upload invalid: " + response.status);
         outputResponse = false;
 
       }
@@ -431,15 +379,14 @@ function openWeatherFetch(apiURL) {
     })
     .then(function (data) {
 
-      console.log(data);
-
-      console.log("[openWeatherFetch] Temp: " + data.hourly[0].temp);
-      console.log("[openWeatherFetch] Wind: " + data.hourly[0].wind_speed);
-      console.log("[openWeatherFetch] Humidity: " + data.hourly[0].humidity);
-      console.log("[openWeatherFetch] UV Index: " + data.hourly[0].uvi);
-      console.log("[openWeatherFetch] Time: " + data.hourly[0].dt);
-      console.log("[openWeatherFetch] UTC Offset: " + data.timezone_offset);
-      console.log("[openWeatherFetch] Weather Icon: " + data.hourly[0].weather[0].icon);
+      // console.log(data);
+      // console.log("[openWeatherFetch] Temp: " + data.hourly[0].temp);
+      // console.log("[openWeatherFetch] Wind: " + data.hourly[0].wind_speed);
+      // console.log("[openWeatherFetch] Humidity: " + data.hourly[0].humidity);
+      // console.log("[openWeatherFetch] UV Index: " + data.hourly[0].uvi);
+      // console.log("[openWeatherFetch] Time: " + data.hourly[0].dt);
+      // console.log("[openWeatherFetch] UTC Offset: " + data.timezone_offset);
+      // console.log("[openWeatherFetch] Weather Icon: " + data.hourly[0].weather[0].icon);
 
       outputArray[0] = data.hourly[0].dt;
       outputArray[1] = data.timezone_offset;
@@ -454,8 +401,6 @@ function openWeatherFetch(apiURL) {
       currentCityWeather.uvIndex = data.hourly[0].uvi;
       currentCityWeather.date = moment(data.hourly[0].dt, "X").format("MMM Do YYYY");
       currentCityWeather.wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[0].weather[0].icon + "@2x.png";
-
-      console.log("[openWeatherFetch] Weather Icon: " + currentCityWeather.wxImgLink);
 
       //++++++++++ Update 5 Day Array ++++++++++
 
@@ -494,10 +439,6 @@ function openWeatherFetch(apiURL) {
       fiveDayForecast[4].humidity = data.daily[5].humidity;
       fiveDayForecast[4].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[5].weather[0].icon + "@2x.png";
 
-      // console.log("[openWeatherFetchARRAY] Temp: " + outputArray[5]);
-
-
-
     });
 
   return outputResponse;
@@ -507,8 +448,7 @@ function openWeatherFetch(apiURL) {
 // ################# refreshPageData #################
 function refreshPageData() {
 
-  // Add code to update Local storeage each time the page is updaed.
-
+  // Update Curernt City Car Weather Data
   liveCityDateEl.textContent = currentCityWeather.city + " " + currentCityWeather.date;
   liveCityTempEl.textContent = "Temperature: " + currentCityWeather.temp + " (F)";
   liveCityWindEl.textContent = "Wind: " + currentCityWeather.wind + " mph";
@@ -516,7 +456,7 @@ function refreshPageData() {
   liveCityUVEl.textContent = "UV Index: " + currentCityWeather.uvIndex;
   liveCityIconEl.src = currentCityWeather.wxImgLink;
 
-  //Logic to define UV Index Color
+  // UV Index Font Color Logic
   // UV Color Scale (NOAA) https://www.weather.gov/images/rah/uv/uv_index_legend_complete.png
   if (currentCityWeather.uvIndex < 3) {
     // Low
@@ -535,6 +475,7 @@ function refreshPageData() {
     liveCityUVEl.style.color = "purple";
   }
 
+  //================================= 5 Day Forecast Cards Update =================================
 
   //########## Day 1 Elements ##########
   forecastcard1CityDateEL.textContent = fiveDayForecast[0].date;
@@ -571,7 +512,7 @@ function refreshPageData() {
   forecastcard5HumidityEL.textContent = "Humidity: " + fiveDayForecast[4].humidity + " %";
   forecastIcon5El.src = fiveDayForecast[4].wxImgLink;
 
-  //########## Update Buttons ##########
+  //########## Update Search History Buttons ##########
   cityButton1.textContent = searchHistory[0];
   cityButton2.textContent = searchHistory[1];
   cityButton3.textContent = searchHistory[2];
@@ -584,25 +525,13 @@ function refreshPageData() {
 // ################# Init #################
 function init() {
 
-  // Function to load fiveDayForecast and currentCityWeather data into respective arrays
-
   refreshPageData();
-
-
-
 
 }
 
-
-
-
-// ====================================== MAIN ========================================
+// =================================== START MAIN =====================================
 
 init();
-
-// Main Code
-
-
 
 
 // ==================================== END MAIN ======================================

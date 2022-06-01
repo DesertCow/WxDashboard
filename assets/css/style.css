@@ -1,50 +1,52 @@
 :root {
   --main-bg-color: rgb(129, 150, 148);
-  --boxHeight: 110px;
-
-  --hourBoxColor: #D4A373;
-  --meetingBoxColor: #FAEDCD;
-
   --forecastDaysBG: #44b9e3;
-
+  --cityCardBorder: #090909;
   --fiveDayTextBG: #13293d;
   --fiveDayText: #fff;
-
-  --cityCardBorder: #090909;
-
-  --summaryButtonColor #44b9e3;
   
-
 }
 
 
-
+/* ================ Tags ================  */
 
 body {
   font-family: 'Open Sans', sans-serif;
-  /* font-size: 16px; */
   line-height: 1;
   background-color: var(--main-bg-color);
 }
 
+div h4 {
+  font-size: 20px;
+}
+
+footer {
+  min-height: 40px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  background: #13293d;
+  color: #fff;
+  border-bottom:30px #879274;
+  width: 100%;
+}
+
+/* ================ Classes ================  */
 
 .titleBox {
   display: flex;
   background: linear-gradient(to right, rgba(170, 206, 239, 15), rgb(0, 132, 255));
   min-height: 80px;
-  /* flex */
   align-items: center;
   font-size: 30px;
   padding: 20px;
-  /*padding-top: 20px;
-  padding-bottom: 20px; */
   width: 100%;
   
 }
 
+
 .cityButton {
-  /*background-color: var(--summaryButtonColor);
-  */background: linear-gradient(to right, rgba(170, 206, 239, 15), rgb(0, 132, 255));
+  background: linear-gradient(to right, rgba(170, 206, 239, 15), rgb(0, 132, 255));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -73,15 +75,15 @@ body {
   -o-border-radius: 12px;
 }
 
+
 .searchHistory {
   display: flex;
-  /* align-items: center; */
   justify-content: center;
   height: 80px;
   font-size: 25px;
   width: 160px;
-  background-color: 'white';
 }
+
 
 .forecastCard {
   font-size: 14px;
@@ -89,6 +91,7 @@ body {
   background-color: var(--forecastDaysBG);
   font-family: 'Radio Canada', sans-ser;
 }
+
 
 .fiveDayText {
   font-size: 20px;
@@ -99,22 +102,5 @@ body {
   min-height: 50px;
   min-width: 80%;
   color: var(--fiveDayText);
-}
-
-div h4 {
-  font-size: 20px;
-}
-
-
-/* ======================== Footer ======================== */
-footer {
-  min-height: 40px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-  background: #13293d;
-  color: #fff;
-  border-bottom:30px #879274;
-  width: 100%;
 }
 
