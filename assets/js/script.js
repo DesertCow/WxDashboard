@@ -268,7 +268,7 @@ function convertCitytoLATLON(city) {
       // console.log("[convertCitytoLATLON] || " + data[0].state);
 
       currentCityWeather.state = data[0].state;
-      console.log("LOG = " + currentCityWeather.state);
+      // console.log("LOG = " + currentCityWeather.state);
 
       return outputArray
 
