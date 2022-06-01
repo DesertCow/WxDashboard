@@ -10,7 +10,7 @@
 By Clayton Skaggs<br>
 (WW22.2) / May 31st 2022
 
-Version 0.1</h5>
+Version 0.2</h5>
 </div>
 
 <br>
@@ -18,19 +18,15 @@ Version 0.1</h5>
 
 ---
 
-<h3 align="center">📡 📡 Deployment Information 📡 📡</h3>
-
----
-
+<h3 align="center">🚀 🚀 Deployment Information 🚀 🚀</h3>
 <div align="center">
-🚀 <a href="https://github.com/DesertCow/WxDashboard">github.com/DesertCow/WxDashboard</a> 🚀
-<br>
-<br>
-🛰️ <a href="https://desertcow.github.io/WxDashboard">desertcow.github.io/WxDashboard/</a> 🛰️
+<a href="https://desertcow.github.io/WxDashboard">desertcow.github.io/WxDashboard/</a>
 </div>
 
 ---
 
+<br>
+<br>
 <br>
 <br>
 <br>
@@ -61,21 +57,28 @@ Version 0.1</h5>
 <b>WHEN</b> I view future weather conditions for that city<br>
 ✔️ THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity <br>
 <b>WHEN</b> I click on a city in the search history<br>
-❌ THEN I am again presented with current and future conditions for that city<br>
+✔️ THEN I am again presented with current and future conditions for that city<br>
 <b>WHEN</b> I refresh the page<br>
 ✔️ THEN the saved events persist<br>
 <br>
 <br>
 <br>
 
-<h3 align="center">💼 💼 Mock Up 💼 💼</h3>
+<h3 align="center">📐 📐 Mock Up 📐 📐</h3>
 
 ---
 <p align="center">
   <img src="./assets/devMeta/mock_Up_Demo.png" alt="Mock Weather App of Quiz App")
 </p>
 
-<h3 align="center">💼 💼 App Demo 💼 💼</h3>
+<h3 align="center">✏️ ✏️ Wire Frame ✏️ ✏️</h3>
+
+---
+<p align="center">
+  <img src="./assets/devMeta/wx_Wireframe.jpg" alt="Wireframe Mock Up by Clayton Skaggs" width="600")
+</p>
+
+<h3 align="center">⚡ ⚡ App Demo ⚡ ⚡</h3>
 
 ---
 <p align="center">
