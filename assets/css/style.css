@@ -1,9 +1,16 @@
 :root {
-  --main-bg-color: rgb(129, 150, 148);
+  --main-bg-color: #005EB6;
   --forecastDaysBG: #44b9e3;
   --cityCardBorder: #090909;
-  --fiveDayTextBG: #13293d;
+  
   --fiveDayText: #fff;
+
+  --fadeStart:#DBEDFF;
+  --fadeEnd:#0084ff;
+
+  --fiveDayTextBGStart:#5BB0FF;
+  --fiveDayTextBG: #00428064;
+  
   
 }
 
@@ -35,40 +42,47 @@ footer {
 
 .titleBox {
   display: flex;
-  background: linear-gradient(to right, rgba(170, 206, 239, 15), rgb(0, 132, 255));
+  background: linear-gradient(to right,var(--fadeStart),var(--fadeEnd));
   min-height: 80px;
   align-items: center;
-  font-size: 30px;
+  font-size: 50px;
   padding: 20px;
   width: 100%;
-  
+  font-family: 'Orbitron', sans-serif;
 }
 
 
 .cityButton {
-  background: linear-gradient(to right, rgba(170, 206, 239, 15), rgb(0, 132, 255));
+  background: linear-gradient(to right, var(--fadeStart),var(--fadeEnd));
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   height: 80px;
-  font-size: 25px;
+  font-size: 22px;
   width: 160px;
   border-radius: 15px;
   -webkit-border-radius: 15px;
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
-  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  font-family: 'Orbitron', sans-serif;
 }
 
+.liveDate {
+  font-size: 30px;
+}
+
+.liveCity {
+  font-size: 50px;
+}
 
 .cityCard {
   border-style: solid;
   border-radius: 12px;
   min-width: 80%;
   outline-color: var(--cityCardBorder);
-  font-family: 'Radio Canada', sans-ser;
+  font-family: 'Radio Canada', sans-serif;
   -webkit-border-radius: 12px;
   -moz-border-radius: 12px;
   -ms-border-radius: 12px;
@@ -79,17 +93,21 @@ footer {
 .searchHistory {
   display: flex;
   justify-content: center;
+  text-align: center;
   height: 80px;
   font-size: 25px;
   width: 160px;
+  font-family: 'Orbitron', sans-serif;
+  color: var(--fiveDayText);
 }
 
 
 .forecastCard {
   font-size: 14px;
   font-weight: 800;
-  background-color: var(--forecastDaysBG);
-  font-family: 'Radio Canada', sans-ser;
+  /* background-color: var(--forecastDaysBG); */
+  background: linear-gradient(to right top, var(--fadeStart),var(--fadeEnd));
+  font-family: 'Radio Canada', sans-serif;
 }
 
 
@@ -97,10 +115,16 @@ footer {
   font-size: 20px;
   margin-bottom: 20px;
   margin-left: 20%;
-  background: var(--fiveDayTextBG);
+  background: linear-gradient(to top,var(--fiveDayTextBGStart),var(--fiveDayTextBG));
   text-align: center;
   min-height: 50px;
   min-width: 80%;
   color: var(--fiveDayText);
+  border-radius: 50px;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  font-family: 'Orbitron', sans-serif;
 }
 

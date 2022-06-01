@@ -9,7 +9,8 @@ var currentTime = moment();
 var superSecretAPIKey = "9c040bb6e1db52e48386cf880254ac09";
 
 // ################# Live City Card #################
-var liveCityDateEl = document.querySelector(".liveCityDate");
+var liveCityCityEl = document.querySelector(".liveCity");
+var liveCityDateEl = document.querySelector(".liveDate");
 var liveCityTempEl = document.querySelector(".liveCityTemp");
 var liveCityWindEl = document.querySelector(".liveCityWind");
 var liveCityHumidityEl = document.querySelector(".liveCityHumidity");
@@ -82,6 +83,7 @@ if (localHistory) {
 // ################# Default/Debug Data Load #################
 let currentCityWeather = {
   "city": "Austin",
+  "state": "Texas",
   "date": "5-30-2022",
   "wxImgLink": "",
   "temp": "55",
@@ -221,7 +223,7 @@ cityButton5.addEventListener("click", function (clickEvent) {
 // ################# currentCityWeatherUpdate #################
 async function currentCityWeatherUpdate(searchCity) {
 
-  var outputLATLON = new Array(2);
+  var outputLATLON = new Array(3);
   var newCityWeather = {};
 
   outputLATLON = convertCitytoLATLON(searchCity);
@@ -237,7 +239,7 @@ async function currentCityWeatherUpdate(searchCity) {
 function convertCitytoLATLON(city) {
 
   // Array of Lat[0]| LON[1]
-  var outputArray = ["VOID", "VOID"];
+  var outputArray = ["VOID", "VOID", "VOID"];
 
   //Create API URL Call
   var convertCityAPICall = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + superSecretAPIKey;
@@ -260,9 +262,13 @@ function convertCitytoLATLON(city) {
     .then(function (data) {
 
       //console.log("[convertCitytoLATLON] CITY LAT/LON: " + data[0].lat + "," + data[0].lon);
-
       outputArray[0] = data[0].lat;
       outputArray[1] = data[0].lon;
+      outputArray[2] = data[0].state;
+      // console.log("[convertCitytoLATLON] || " + data[0].state);
+
+      currentCityWeather.state = data[0].state;
+      console.log("LOG = " + currentCityWeather.state);
 
       return outputArray
 
@@ -329,7 +335,8 @@ function openWeatherFetch(apiURL) {
     })
     .then(function (data) {
 
-      // console.log(data);
+      //console.log(data);
+      // console.log("[openWeatherFetch] State: " + data.hourly[0].temp);
       // console.log("[openWeatherFetch] Temp: " + data.hourly[0].temp);
       // console.log("[openWeatherFetch] Wind: " + data.hourly[0].wind_speed);
       // console.log("[openWeatherFetch] Humidity: " + data.hourly[0].humidity);
@@ -337,6 +344,7 @@ function openWeatherFetch(apiURL) {
       // console.log("[openWeatherFetch] Time: " + data.hourly[0].dt);
       // console.log("[openWeatherFetch] UTC Offset: " + data.timezone_offset);
       // console.log("[openWeatherFetch] Weather Icon: " + data.hourly[0].weather[0].icon);
+
 
       outputArray[0] = data.hourly[0].dt;
       outputArray[1] = data.timezone_offset;
@@ -400,7 +408,8 @@ function openWeatherFetch(apiURL) {
 function refreshPageData() {
 
   // Update Curernt City Car Weather Data
-  liveCityDateEl.textContent = currentCityWeather.city + " " + currentCityWeather.date;
+  liveCityCityEl.textContent = currentCityWeather.city + ", " + currentCityWeather.state;
+  liveCityDateEl.textContent = currentCityWeather.date;
   liveCityTempEl.textContent = "Temperature: " + currentCityWeather.temp + " (F)";
   liveCityWindEl.textContent = "Wind: " + currentCityWeather.wind + " mph";
   liveCityHumidityEl.textContent = "Humidity: " + currentCityWeather.humidity + " %";
