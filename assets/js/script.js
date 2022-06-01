@@ -57,11 +57,11 @@ var searchBoxInput = document.querySelector(".searchBoxInput");
 var searchHistoryListEl = document.querySelector(".searchHistoryList");
 
 // ################# City earch Buttons #################
-var cityButton1El = document.querySelector(".cityButton1");
-var cityButton2El = document.querySelector(".cityButton2");
-var cityButton3El = document.querySelector(".cityButton3");
-var cityButton4El = document.querySelector(".cityButton4");
-var cityButton5El = document.querySelector(".cityButton5");
+var cityButton1 = document.querySelector(".cityButton1");
+var cityButton2 = document.querySelector(".cityButton2");
+var cityButton3 = document.querySelector(".cityButton3");
+var cityButton4 = document.querySelector(".cityButton4");
+var cityButton5 = document.querySelector(".cityButton5");
 
 // ################# Button Decleration #################
 
@@ -139,11 +139,11 @@ searchButton.addEventListener("click", function (clickEvent) {
 
     currentCityWeatherUpdate(searchBoxInput.value);
 
-    searchHistory.push(searchBoxInput.value);
+    searchHistory.unshift(searchBoxInput.value);
 
     localStorage.setItem("wxSearchHistory", JSON.stringify(searchHistory));
 
-    var currentUser = JSON.parse(localStorage.getItem("wxSearchHistory"));
+    // var currentUser = JSON.parse(localStorage.getItem("wxSearchHistory"));
 
     //FOR LOOP
     var cityAppend = 'class="card-body cityButtonShadow text-center p-2 m-2 cityButton">' + searchHistory[0];
@@ -171,53 +171,65 @@ searchButton.addEventListener("click", function (clickEvent) {
 
 });
 
-// cityButton1.addEventListener("click", function (clickEvent) {
+cityButton1.addEventListener("click", function (clickEvent) {
 
-//   console.log("City Button #1 Clicked!");
+  console.log(cityButton1.textContent + " Button Clicked!");
 
-// });
+  currentCityWeather.city = searchHistory[0];
+  currentCityWeatherUpdate(currentCityWeather.city);
+  searchHistory.unshift(currentCityWeather.city);
+  localStorage.setItem("wxSearchHistory", JSON.stringify(searchHistory));
+  refreshPageData();
 
-// cityButton2.addEventListener("click", function (clickEvent) {
+});
 
-//   console.log("City Button #2 Clicked!");
+cityButton2.addEventListener("click", function (clickEvent) {
 
-// });
+  console.log(cityButton2.textContent + " Button Clicked!");
 
-// cityButton3.addEventListener("click", function (clickEvent) {
+  currentCityWeather.city = searchHistory[1];
+  currentCityWeatherUpdate(currentCityWeather.city);
+  searchHistory.unshift(currentCityWeather.city);
+  localStorage.setItem("wxSearchHistory", JSON.stringify(searchHistory));
+  refreshPageData();
 
-//   console.log("City Button #3 Clicked!");
+});
 
-// });
+cityButton3.addEventListener("click", function (clickEvent) {
 
-// cityButton4.addEventListener("click", function (clickEvent) {
+  console.log(cityButton3.textContent + " Button Clicked!");
 
-//   console.log("City Button #4 Clicked!");
+  currentCityWeather.city = searchHistory[2];
+  currentCityWeatherUpdate(currentCityWeather.city);
+  searchHistory.unshift(currentCityWeather.city);
+  localStorage.setItem("wxSearchHistory", JSON.stringify(searchHistory));
+  refreshPageData();
 
-// });
+});
 
-// cityButton5.addEventListener("click", function (clickEvent) {
+cityButton4.addEventListener("click", function (clickEvent) {
 
-//   console.log("City Button #5 Clicked!");
+  console.log(cityButton4.textContent + " Button Clicked!");
 
-// });
+  currentCityWeather.city = searchHistory[3];
+  currentCityWeatherUpdate(currentCityWeather.city);
+  searchHistory.unshift(currentCityWeather.city);
+  localStorage.setItem("wxSearchHistory", JSON.stringify(searchHistory));
+  refreshPageData();
 
-// cityButton6.addEventListener("click", function (clickEvent) {
+});
 
-//   console.log("City Button #6 Clicked!");
+cityButton5.addEventListener("click", function (clickEvent) {
 
-// });
+  console.log(cityButton5.textContent + " Button Clicked!");
 
-// cityButton7.addEventListener("click", function (clickEvent) {
+  currentCityWeather.city = searchHistory[4];
+  currentCityWeatherUpdate(currentCityWeather.city);
+  searchHistory.unshift(currentCityWeather.city);
+  localStorage.setItem("wxSearchHistory", JSON.stringify(searchHistory));
+  refreshPageData();
 
-//   console.log("City Button #7 Clicked!");
-
-// });
-
-// cityButton8.addEventListener("click", function (clickEvent) {
-
-//   console.log("City Button #8 Clicked!");
-
-// });
+});
 
 
 // ############################ Mouse Over/Out Listeners ###############################
@@ -505,61 +517,66 @@ function refreshPageData() {
   liveCityIconEl.src = currentCityWeather.wxImgLink;
 
   //Logic to define UV Index Color
+  // UV Color Scale (NOAA) https://www.weather.gov/images/rah/uv/uv_index_legend_complete.png
   if (currentCityWeather.uvIndex < 3) {
-
+    // Low
     liveCityUVEl.style.color = "green";
   } else if (currentCityWeather.uvIndex < 6) {
+    // Moderate
     liveCityUVEl.style.color = "yellow";
   } else if (currentCityWeather.uvIndex < 8) {
+    // High
     liveCityUVEl.style.color = "#fb5607";
   } else if (currentCityWeather.uvIndex < 11) {
+    // Very High
     liveCityUVEl.style.color = "red";
   } else if (currentCityWeather.uvIndex > 11) {
+    // Extreme
     liveCityUVEl.style.color = "purple";
   }
 
 
   //########## Day 1 Elements ##########
-  forecastcard1CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[0].date;
+  forecastcard1CityDateEL.textContent = fiveDayForecast[0].date;
   forecastcard1TempEL.textContent = "Temperature: " + fiveDayForecast[0].temp;
   forecastcard1WindEL.textContent = "Wind: " + fiveDayForecast[0].wind + " mph";
   forecastcard1HumidityEL.textContent = "Humidity: " + fiveDayForecast[0].humidity + " %";
   forecastIcon1El.src = fiveDayForecast[0].wxImgLink;
 
   //########## Day 2 Elements ##########
-  forecastcard2CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[1].date;
+  forecastcard2CityDateEL.textContent = fiveDayForecast[1].date;
   forecastcard2TempEL.textContent = "Temperature: " + fiveDayForecast[1].temp;
   forecastcard2WindEL.textContent = "Wind: " + fiveDayForecast[1].wind + " mph";
   forecastcard2HumidityEL.textContent = "Humidity: " + fiveDayForecast[1].humidity + " %";
   forecastIcon2El.src = fiveDayForecast[1].wxImgLink;
 
   //########## Day 3 Elements ##########
-  forecastcard3CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[2].date;
+  forecastcard3CityDateEL.textContent = fiveDayForecast[2].date;
   forecastcard3TempEL.textContent = "Temperature: " + fiveDayForecast[2].temp;
   forecastcard3WindEL.textContent = "Wind: " + fiveDayForecast[2].wind + " mph";
   forecastcard3HumidityEL.textContent = "Humidity: " + fiveDayForecast[2].humidity + " %";
   forecastIcon3El.src = fiveDayForecast[2].wxImgLink;
 
   //########## Day 4 Elements ##########
-  forecastcard4CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[3].date;
+  forecastcard4CityDateEL.textContent = fiveDayForecast[3].date;
   forecastcard4TempEL.textContent = "Temperature: " + fiveDayForecast[3].temp;
   forecastcard4WindEL.textContent = "Wind: " + fiveDayForecast[3].wind + " mph";
   forecastcard4HumidityEL.textContent = "Humidity: " + fiveDayForecast[3].humidity + " %";
   forecastIcon4El.src = fiveDayForecast[3].wxImgLink;
 
   //########## Day 5 Elements ##########
-  forecastcard5CityDateEL.textContent = currentCityWeather.city + " " + fiveDayForecast[4].date;
+  forecastcard5CityDateEL.textContent = fiveDayForecast[4].date;
   forecastcard5TempEL.textContent = "Temperature: " + fiveDayForecast[4].temp;
   forecastcard5WindEL.textContent = "Wind: " + fiveDayForecast[4].wind + " mph";
   forecastcard5HumidityEL.textContent = "Humidity: " + fiveDayForecast[4].humidity + " %";
   forecastIcon5El.src = fiveDayForecast[4].wxImgLink;
 
   //########## Update Buttons ##########
-  cityButton1El.textContent = searchHistory[0];
-  cityButton2El.textContent = searchHistory[1];
-  cityButton3El.textContent = searchHistory[2];
-  cityButton4El.textContent = searchHistory[3];
-  cityButton5El.textContent = searchHistory[4];
+  cityButton1.textContent = searchHistory[0];
+  cityButton2.textContent = searchHistory[1];
+  cityButton3.textContent = searchHistory[2];
+  cityButton4.textContent = searchHistory[3];
+  cityButton5.textContent = searchHistory[4];
 
 }
 

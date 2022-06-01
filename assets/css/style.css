@@ -27,6 +27,7 @@ body {
   background-color: var(--main-bg-color);
 }
 
+
 .titleBox {
   display: flex;
   background: linear-gradient(to right, rgba(170, 206, 239, 15), rgb(0, 132, 255));

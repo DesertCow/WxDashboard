@@ -61,7 +61,7 @@ Version 0.1</h5>
 <b>WHEN</b> I view future weather conditions for that city<br>
 ✔️ THEN I am presented with a 5-day forecast that displays the date, an icon representation of weather conditions, the temperature, the wind speed, and the humidity <br>
 <b>WHEN</b> I click on a city in the search history<br>
-❌ THEN I am again presented with current and future conditions for that city<br>
+✔️ THEN I am again presented with current and future conditions for that city<br>
 <b>WHEN</b> I refresh the page<br>
 ✔️ THEN the saved events persist<br>
 <br>
