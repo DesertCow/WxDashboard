@@ -68,7 +68,7 @@ Version 0.2</h5>
 
 ---
 <p align="center">
-  <img src="./assets/devMeta/mock_Up_Demo.png" alt="Mock Weather App of Quiz App")
+  <img src="./assets/devMeta/mock_Up_Demo.png" alt="Mock Weather App of Quiz App" width="650")
 </p>
 
 <h3 align="center">✏️ ✏️ Wire Frame ✏️ ✏️</h3>
