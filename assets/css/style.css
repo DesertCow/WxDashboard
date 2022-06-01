@@ -46,6 +46,8 @@ body {
   */background: linear-gradient(to right, rgba(170, 206, 239, 15), rgb(0, 132, 255));
   display: flex;
   align-items: center;
+  justify-content: center;
+  text-align: center;
   height: 80px;
   font-size: 25px;
   width: 160px;
@@ -54,12 +56,14 @@ body {
   -moz-border-radius: 15px;
   -ms-border-radius: 15px;
   -o-border-radius: 15px;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
 
 .cityCard {
   border-style: solid;
   border-radius: 12px;
+  min-width: 80%;
   outline-color: var(--cityCardBorder);
   font-family: 'Radio Canada', sans-ser;
   -webkit-border-radius: 12px;
@@ -68,8 +72,18 @@ body {
   -o-border-radius: 12px;
 }
 
+.searchHistory {
+  display: flex;
+  /* align-items: center; */
+  justify-content: center;
+  height: 80px;
+  font-size: 25px;
+  width: 160px;
+  background-color: 'white';
+}
+
 .forecastCard {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: 800;
   background-color: var(--forecastDaysBG);
   font-family: 'Radio Canada', sans-ser;
@@ -82,7 +96,7 @@ body {
   background: var(--fiveDayTextBG);
   text-align: center;
   min-height: 50px;
-  min-width: 100%;
+  min-width: 80%;
   color: var(--fiveDayText);
 }
 

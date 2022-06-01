@@ -56,18 +56,16 @@ var forecastIcon5El = document.querySelector(".day5Icon");
 var searchBoxInput = document.querySelector(".searchBoxInput");
 var searchHistoryListEl = document.querySelector(".searchHistoryList");
 
+// ################# City earch Buttons #################
+var cityButton1El = document.querySelector(".cityButton1");
+var cityButton2El = document.querySelector(".cityButton2");
+var cityButton3El = document.querySelector(".cityButton3");
+var cityButton4El = document.querySelector(".cityButton4");
+var cityButton5El = document.querySelector(".cityButton5");
+
 // ################# Button Decleration #################
 
 var searchButton = document.querySelector(".searchBtn");
-
-var cityButton1 = document.querySelector(".cityBtn1");
-// var cityButton2 = document.querySelector(".cityBtn2");
-// var cityButton3 = document.querySelector(".cityBtn3");
-// var cityButton4 = document.querySelector(".cityBtn4");
-// var cityButton5 = document.querySelector(".cityBtn5");
-// var cityButton6 = document.querySelector(".cityBtn6");
-// var cityButton7 = document.querySelector(".cityBtn7");
-// var cityButton8 = document.querySelector(".cityBtn8");
 
 var searchHistory = [];
 
@@ -555,6 +553,13 @@ function refreshPageData() {
   forecastcard5WindEL.textContent = "Wind: " + fiveDayForecast[4].wind + " mph";
   forecastcard5HumidityEL.textContent = "Humidity: " + fiveDayForecast[4].humidity + " %";
   forecastIcon5El.src = fiveDayForecast[4].wxImgLink;
+
+  //########## Update Buttons ##########
+  cityButton1El.textContent = searchHistory[0];
+  cityButton2El.textContent = searchHistory[1];
+  cityButton3El.textContent = searchHistory[2];
+  cityButton4El.textContent = searchHistory[3];
+  cityButton5El.textContent = searchHistory[4];
 
 }
 
