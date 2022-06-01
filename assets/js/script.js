@@ -267,10 +267,10 @@ async function currentCityWeatherUpdate(searchCity) {
 function convertCitytoLATLON(city) {
 
   // Array of Lat[0]| LON[1]
-  var outputArray = ["VOID", "VOID"]
+  var outputArray = ["VOID", "VOID"];
 
   //Create API URL Call
-  var convertCityAPICall = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + superSecretAPIKey;
+  var convertCityAPICall = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + superSecretAPIKey;
 
 
   fetch(convertCityAPICall)
@@ -402,7 +402,7 @@ function openWeatherFetch(apiURL) {
       currentCityWeather.humidity = data.hourly[0].humidity;
       currentCityWeather.uvIndex = data.hourly[0].uvi;
       currentCityWeather.date = moment(data.hourly[0].dt, "X").format("MMM Do YYYY");
-      currentCityWeather.wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[0].weather[0].icon + "@2x.png";
+      currentCityWeather.wxImgLink = "https://openweathermap.org/img/wn/" + data.hourly[0].weather[0].icon + "@2x.png";
 
       //++++++++++ Update 5 Day Array ++++++++++
 
@@ -411,35 +411,35 @@ function openWeatherFetch(apiURL) {
       fiveDayForecast[0].temp = data.daily[1].temp.day;
       fiveDayForecast[0].wind = data.daily[1].wind_speed;
       fiveDayForecast[0].humidity = data.daily[1].humidity;
-      fiveDayForecast[0].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[1].weather[0].icon + "@2x.png";
+      fiveDayForecast[0].wxImgLink = "https://openweathermap.org/img/wn/" + data.hourly[1].weather[0].icon + "@2x.png";
 
       //Day2
       fiveDayForecast[1].date = moment(data.daily[2].dt, "X").format("MMM Do YYYY");
       fiveDayForecast[1].temp = data.daily[2].temp.day;
       fiveDayForecast[1].wind = data.daily[2].wind_speed;
       fiveDayForecast[1].humidity = data.daily[2].humidity;
-      fiveDayForecast[1].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[2].weather[0].icon + "@2x.png";
+      fiveDayForecast[1].wxImgLink = "https://openweathermap.org/img/wn/" + data.hourly[2].weather[0].icon + "@2x.png";
 
       //Day3
       fiveDayForecast[2].date = moment(data.daily[3].dt, "X").format("MMM Do YYYY");
       fiveDayForecast[2].temp = data.daily[3].temp.day;
       fiveDayForecast[2].wind = data.daily[3].wind_speed;
       fiveDayForecast[2].humidity = data.daily[3].humidity;
-      fiveDayForecast[2].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[3].weather[0].icon + "@2x.png";
+      fiveDayForecast[2].wxImgLink = "https://openweathermap.org/img/wn/" + data.hourly[3].weather[0].icon + "@2x.png";
 
       //Day4
       fiveDayForecast[3].date = moment(data.daily[4].dt, "X").format("MMM Do YYYY");
       fiveDayForecast[3].temp = data.daily[4].temp.day;
       fiveDayForecast[3].wind = data.daily[4].wind_speed;
       fiveDayForecast[3].humidity = data.daily[4].humidity;
-      fiveDayForecast[3].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[4].weather[0].icon + "@2x.png";
+      fiveDayForecast[3].wxImgLink = "https://openweathermap.org/img/wn/" + data.hourly[4].weather[0].icon + "@2x.png";
 
       //Day5
       fiveDayForecast[4].date = moment(data.daily[5].dt, "X").format("MMM Do YYYY");
       fiveDayForecast[4].temp = data.daily[5].temp.day;
       fiveDayForecast[4].wind = data.daily[5].wind_speed;
       fiveDayForecast[4].humidity = data.daily[5].humidity;
-      fiveDayForecast[4].wxImgLink = "http://openweathermap.org/img/wn/" + data.hourly[5].weather[0].icon + "@2x.png";
+      fiveDayForecast[4].wxImgLink = "https://openweathermap.org/img/wn/" + data.hourly[5].weather[0].icon + "@2x.png";
 
       refreshPageData();
 
