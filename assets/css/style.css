@@ -1,5 +1,5 @@
 :root {
-  --main-bg-color: #005EB6;
+  --main-bg-color: #004483;
   --forecastDaysBG: #44b9e3;
   --cityCardBorder: #090909;
   
@@ -9,7 +9,7 @@
   --fadeEnd:#0084ff;
 
   --fiveDayTextBGStart:#5BB0FF;
-  --fiveDayTextBG: #00428064;
+  --fiveDayTextBG: #8AC7FF;
   
   
 }
