@@ -136,8 +136,6 @@ searchButton.addEventListener("click", function (clickEvent) {
 
   if (searchBoxInput.value) {
 
-    //console.log("Search Button Clicked! SEARCH = " + searchBoxInput.value);
-
     currentCityWeather.city = searchBoxInput.value;
 
     currentCityWeatherUpdate(searchBoxInput.value);
@@ -159,7 +157,6 @@ searchButton.addEventListener("click", function (clickEvent) {
 
 cityButton1.addEventListener("click", function (clickEvent) {
 
-  //console.log(cityButton1.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[0];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -171,7 +168,6 @@ cityButton1.addEventListener("click", function (clickEvent) {
 
 cityButton2.addEventListener("click", function (clickEvent) {
 
-  //console.log(cityButton2.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[1];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -183,7 +179,6 @@ cityButton2.addEventListener("click", function (clickEvent) {
 
 cityButton3.addEventListener("click", function (clickEvent) {
 
-  //console.log(cityButton3.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[2];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -195,7 +190,6 @@ cityButton3.addEventListener("click", function (clickEvent) {
 
 cityButton4.addEventListener("click", function (clickEvent) {
 
-  //console.log(cityButton4.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[3];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -207,7 +201,6 @@ cityButton4.addEventListener("click", function (clickEvent) {
 
 cityButton5.addEventListener("click", function (clickEvent) {
 
-  //console.log(cityButton5.textContent + " Button Clicked!");
 
   currentCityWeather.city = searchHistory[4];
   currentCityWeatherUpdate(currentCityWeather.city);
@@ -231,35 +224,12 @@ async function currentCityWeatherUpdate(searchCity) {
   var outputLATLON = new Array(2);
   var newCityWeather = {};
 
-  // currentCityWeather.city = searchCity;
-
-  //console.log("Kicking off new search with " + searchCity);
-
-  // Convert City to LAT/LON to API call
-
-
   outputLATLON = convertCitytoLATLON(searchCity);
 
+  // Hardcoded Delay to wait for API Response
   await delay(4000);
 
-
-  if (outputLATLON[0] !== "VOID") {
-    console.log("!!LAT =" + outputLATLON[0] + "||!!LON =" + outputLATLON[1]);
-  }
-  console.log("LAT =" + outputLATLON[0] + "||LON =" + outputLATLON[1]);
-
-  // while (outputLATLON[0] == "VOID")
-  //=============================================================
-  // #BUG: NEED EXECUTION TO STOP TILL Code Below has complete! #BUG
-  //=============================================================
-
   var cityResults = cityWeatherFetch(outputLATLON);
-
-  console.log("CitySearchResult = " + cityResults)
-
-  //=============================================================
-  // #BUG: NEED EXECUTION TO STOP TILL Code ^ has complete! #BUG
-  //=============================================================
 
 }
 
@@ -289,27 +259,15 @@ function convertCitytoLATLON(city) {
     })
     .then(function (data) {
 
-      console.log("[convertCitytoLATLON] CITY LAT/LON: " + data[0].lat + "," + data[0].lon);
+      //console.log("[convertCitytoLATLON] CITY LAT/LON: " + data[0].lat + "," + data[0].lon);
 
       outputArray[0] = data[0].lat;
       outputArray[1] = data[0].lon;
 
       return outputArray
-      //console.log(data);
+
     });
 
-  //=============================================================
-  // #BUG: NEED EXECUTION TO STOP TILL Code ^ has complete! #BUG
-  //=============================================================
-
-  // Hardcode Work Around
-  //outputArray[0] = "45.67";
-  //outputArray[1] = "-111.03";
-
-  //outputArray[0] = "33.63";
-  //outputArray[1] = "-117.87";
-
-  // Return Array of LAT/LON
   return outputArray
 }
 
@@ -331,17 +289,9 @@ function cityWeatherFetch(location) {
     "uvIndex": "VOID",
   }
 
-  console.log("[cityWeatherFetch] || LAT = " + lat + " || LON = " + lon);
-
   apiCall = openWeatherAPICallGen(lat, lon, "current");
 
   openWeatherFetch(apiCall);
-
-  //return apiResult;
-
-  //=============================================================
-  // #BUG: Timeout work around to deal with API Delay        #BUG
-  //=============================================================
 
 }
 
@@ -363,17 +313,15 @@ function openWeatherFetch(apiURL) {
   fetch(apiURL)
     .then(function (response) {
 
-      console.log('======= API Resonpose: ' + response.status + ' =======');
+      //console.log('======= API Resonpose: ' + response.status + ' =======');
 
       if (response.status === 200) {
-        console.log("Upload Valid: " + response.status);
+        //console.log("Upload Valid: " + response.status);
         outputResponse = 1;
-        console.log("Upload Valid: " + outputResponse);
       }
       else {
-        console.log("ERROR: Upload invalid: " + response.status);
+        //console.log("ERROR: Upload invalid: " + response.status);
         outputResponse = 0;
-        console.log("ERROR: Upload invalid: " + outputResponse);
 
       }
 
@@ -381,14 +329,14 @@ function openWeatherFetch(apiURL) {
     })
     .then(function (data) {
 
-      console.log(data);
-      console.log("[openWeatherFetch] Temp: " + data.hourly[0].temp);
-      console.log("[openWeatherFetch] Wind: " + data.hourly[0].wind_speed);
-      console.log("[openWeatherFetch] Humidity: " + data.hourly[0].humidity);
-      console.log("[openWeatherFetch] UV Index: " + data.hourly[0].uvi);
-      console.log("[openWeatherFetch] Time: " + data.hourly[0].dt);
-      console.log("[openWeatherFetch] UTC Offset: " + data.timezone_offset);
-      console.log("[openWeatherFetch] Weather Icon: " + data.hourly[0].weather[0].icon);
+      // console.log(data);
+      // console.log("[openWeatherFetch] Temp: " + data.hourly[0].temp);
+      // console.log("[openWeatherFetch] Wind: " + data.hourly[0].wind_speed);
+      // console.log("[openWeatherFetch] Humidity: " + data.hourly[0].humidity);
+      // console.log("[openWeatherFetch] UV Index: " + data.hourly[0].uvi);
+      // console.log("[openWeatherFetch] Time: " + data.hourly[0].dt);
+      // console.log("[openWeatherFetch] UTC Offset: " + data.timezone_offset);
+      // console.log("[openWeatherFetch] Weather Icon: " + data.hourly[0].weather[0].icon);
 
       outputArray[0] = data.hourly[0].dt;
       outputArray[1] = data.timezone_offset;
@@ -443,42 +391,7 @@ function openWeatherFetch(apiURL) {
 
       refreshPageData();
 
-      //return 1;
-
-      // console.log("OutputResponse #1:" + outputResponse + " == 1");
-      // if (outputResponse === "1") {
-
-      //   return 1;
-      //   console.log("Upload True #1: " + outputResponse);
-
-      // } else if (outputResponse === "0") {
-
-      //   return 0;
-      //   console.log("Upload FALSE #1:" + outputResponse);
-
-      // } else {
-      //   return "VOID";
-      // }
-
-
-
     });
-
-  // console.log("OutputResponse #2:" + outputResponse);
-
-  // if (outputResponse == 1) {
-
-  //   return 1;
-  //   console.log("Upload True #2:" + outputResponse);
-
-  // } else if (outputResponse == 0) {
-
-  //   return 0;
-  //   console.log("Upload FALSE #2:" + outputResponse);
-  // } else {
-  //   return "VOID";
-  // }
-
 
 }
 
@@ -559,6 +472,7 @@ function refreshPageData() {
 
 }
 
+// ################# delay #################
 function delay(milliseconds) {
   return new Promise(resolve => {
     setTimeout(resolve, milliseconds);
@@ -576,6 +490,7 @@ function init() {
 
 init();
 
+// Now Waiting on User to Click "Search" Button... AKA Line: 135
 
 // ==================================== END MAIN ======================================
 
