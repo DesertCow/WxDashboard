@@ -72,7 +72,7 @@ Version 0.1</h5>
 
 ---
 <p align="center">
-  <img src="./assets/devMeta/mock_up_Demo.png" alt="Mock Weather App of Quiz App")
+  <img src="./assets/devMeta/mock_Up_Demo.png" alt="Mock Weather App of Quiz App")
 </p>
 
 <h3 align="center">💼 💼 App Demo 💼 💼</h3>
